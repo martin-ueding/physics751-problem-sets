@@ -81,6 +81,95 @@ Yes $\Box$ \hspace{2cm} No $\Box$
 
 \newpage
 
+\section{Vierergruppe (Klein Four-Group)}
+
+\subsection{Abelian}
+
+\begin{problem}
+    Prove that all groups with at most four elements are abelian. \\
+    Hint: Study the groups with three elements $\{e, a, b\}$ first.
+\end{problem}
+
+I start with a group consisting of three elements, $\{e, a, b\}$.
+\begin{itemize}
+    \item
+        The elements are unique, as the above is a set.
+    \item
+        There must be an inverse of $a$ to make it a group.
+    \item
+        $a\inv$ must be $b$, since $e$ cannot be the inverse. If that would be
+        the case, then $ea=e$ and not $ea=a$ as expected from the identity
+        element.
+    \item
+        The left inverse, $b$, must also be a right inverse.
+    \item
+        Therefore, $a$ commutes with $b$ since they are inverses of each other.
+\end{itemize}
+
+Now I will do this with four elements: $\{e, a, b, c\}$. Let the inverse of $a$
+be $b$ again. $c$ has to have an inverse itself to satisfy that group axiom.
+There are three possibilities:
+
+\begin{description}
+    \item[Case $c\inv = a$]
+        \begin{align*}
+            a &= c\inv. \\
+            \intertext{%
+                Premuliply with $a\inv$:
+            }
+            a\inv a &= a\inv c\inv. \\
+            \intertext{%
+                Postmuliply with $c$:
+            }
+            a\inv a c &= a\inv c\inv c. \\
+            \intertext{%
+                Left side: Using the fact that $c$ is the inverse of $a$. Right
+                side: Same thing, just that $a\inv c\inv = (ca)\inv = e\inv =
+                e$. I get
+            }
+            a\inv &= c.
+        \end{align*}
+        The inverse for $a$ is now $c$. By previous choice, the inverse of $a$
+        was $b$. This means that $b = c$, which is not allowed since elements
+        of a set must be unique.
+
+    \item[Case $c\inv = b$]
+        Same as above, just that $a = b$.
+
+    \item[Case $c\inv = c$]
+        This is the only possibility left.
+\end{description}
+
+As before, $a$ commutes with $b$. The commutation with $c$ is not clear yet.
+First I have to define what $ac$ and $bc$ is supposed to be.
+
+\subsection{Isomorphic}
+
+\begin{problem}
+    Show that every group with four elements is isomorphic to either $\Z_4$
+    (cyclic group of four elements or to $\Z_2 \times \Z_2$ (Klein Four-Group).
+    Give the multiplication tables.
+\end{problem}
+
+One possible representation of $\Z_4$ is $\{1, \iup, -1, -\iup\}$ with the
+complex product as association $\circ$. I will call the elements $\{e, a, b,
+c\}$ and write down the multiplication matrix:
+\[
+    \tens T_{\Z_4} =
+    \begin{pmatrix}
+        e & a & b & c \\
+        a & b & c & e \\
+        b & c & e & a \\
+        c & e & a & b
+    \end{pmatrix}
+\]
+
+\subsection{Comparison to other groups}
+
+\begin{problem}
+    Compare the groups found in point 2 with the groups acting on directed and
+    undirected polyhedra.
+\end{problem}
 
 \end{document}
 
