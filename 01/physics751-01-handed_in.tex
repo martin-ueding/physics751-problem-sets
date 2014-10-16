@@ -164,12 +164,121 @@ c\}$ and write down the multiplication matrix:
     \end{pmatrix}
 \]
 
+For the group $\Z_2 \times \Z_2$ I chose the representation
+\[
+    \{(1, 1), (1, -1), (-1, 1), (-1, -1)\} =: \{e, a, b, c\}
+\]
+and got the following multiplication table:
+\[
+    \tens T_{\Z_2 \times \Z_2} =
+    \begin{pmatrix}
+        e & a & b & c \\
+        a & e & c & b \\
+        b & c & e & a \\
+        c & b & a & e
+    \end{pmatrix}
+\]
+
+The multiplication table of an abelian group of four elements must have the
+following structure, with the capital variables to be specified:
+\[
+    \tens T_\text{abelian} =
+    \begin{pmatrix}
+        e & a & b & c \\
+        a & X & A & B \\
+        b & A & Y & C \\
+        c & B & C & Z
+    \end{pmatrix}.
+\]
+
+Using the rearrangement theorem that states that the every single group
+element appears in every single column and row I can restrict the values the
+capital variables can have.
+
+$A$ can only be $e$ or $c$.
+
+\begin{description}
+    \item[Let $A$ be $e$.]
+        We have $A = e$. Then $B = b$, since $e$, $a$ and $c$ are already taken
+        in the column and row of $B$. Therefore $X = c$. So far, the
+        multiplication matrix is
+        \[
+            \tens T =
+            \begin{pmatrix}
+                e & a & b & c \\
+                a & c & e & b \\
+                b & e & Y & C \\
+                c & b & C & Z
+            \end{pmatrix}.
+        \]
+        Now let $Y = a$. Then $C = c$, which does not work. Let $Y = c$. Then
+        $C = a$ and $Z = e$.
+        \[
+            \tens T =
+            \begin{pmatrix}
+                e & a & b & c \\
+                a & c & e & b \\
+                b & e & c & a \\
+                c & b & a & e
+            \end{pmatrix}.
+        \]
+        This is rather close to the $\Z_2 \times \Z_2$ case, just the middle $2
+        \times 2$ part is different. Either I have made a mistake in
+        \emph{this} part or my interpretation of $\Z_2 \times \Z_2$ is wrong.
+
+    \item[Let $A$ be $c$.]
+        Let $B = e$. Then $X = b$.
+        \[
+            \tens T =
+            \begin{pmatrix}
+                e & a & b & c \\
+                a & b & c & e \\
+                b & c & Y & C \\
+                c & e & C & Z
+            \end{pmatrix}.
+        \]
+        Now $C = a$ which forces $Y = e$ and $z = b$.
+        \[
+            \tens T =
+            \begin{pmatrix}
+                e & a & b & c \\
+                a & b & c & e \\
+                b & c & e & a \\
+                c & e & a & b
+            \end{pmatrix}.
+        \]
+        That is $\tens T_{\Z_4}$.
+
+        Let $B = b$. Then $X = e$. This leaves $Y = Z$ but $Y$ and $Z$ can be
+        chosen to be either $e$ or $a$ freely:
+        \[
+            \tens T=
+            \begin{pmatrix}
+                e & a & b & c \\
+                a & e & c & b \\
+                b & c & Y & C \\
+                c & b & C & Z
+            \end{pmatrix}.
+        \]
+        If $Y = Z = e$ and $C = a$ is chosen, this will be $\tens T_{\Z_2
+        \times \Z_2}$.
+\end{description}
+
+I do see that there are not a lot of possibilities for commutative groups with
+four elements. However, I see more possibilities than $\Z_4$ and $\Z_2 \times
+\Z_2$.
+
 \subsection{Comparison to other groups}
 
 \begin{problem}
     Compare the groups found in point 2 with the groups acting on directed and
     undirected polyhedra.
 \end{problem}
+
+The (rotation) group of an oriented square is $\Z_4$. When it is undirected
+there are additional reflections and the group will be $D_2$. The group $\Z_2
+\times \Z_2$ could represent the reflections or a square with respect to the
+horizontal and vertical axis which are (anti-)parallel to the edges.
 
 \end{document}
 
