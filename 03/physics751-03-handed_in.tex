@@ -21,11 +21,24 @@
     backgroundcolor=black!5,
     frametitlebackgroundcolor=black!10,
     roundcorner=5pt,
+    skipabove=\topskip,
     innertopmargin=\topskip,
     splittopskip=\topskip,
     frametitle={Problem Statement},
     frametitlerule=true,
 ]{problem}
+
+\newmdenv[%
+    backgroundcolor=black!5,
+    frametitlebackgroundcolor=black!10,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+    frametitle={Side Question},
+    frametitlerule=true,
+]{question}
+
 
 \hypersetup{
     pdftitle=
@@ -63,6 +76,7 @@
 \newcommand\1{\sigma_1}
 \newcommand\2{\sigma_2}
 \newcommand\3{\sigma_3}
+\newcommand\ssep{,\;}
 
 \subsection{Formation of a group}
 
@@ -181,7 +195,7 @@ table~\ref{tab:symbols} I have introduced $-e := \1\2\1\2$.
 
 There are 8 elements in the whole thing:
 \[
-    \{ e, \1, \2, \1\2, \2\1, \2\1\2, \1\2\1, \1\2\1\2 \}.
+    \{ e\ssep \1\ssep \2\ssep \1\2\ssep \2\1\ssep \2\1\2\ssep \1\2\1\ssep \1\2\1\2 \}.
 \]
 Therefore, the order is 8.
 
@@ -221,6 +235,41 @@ The orders are written down in table~\ref{tab:orders}.
 
 \subsubsection{Classes}
 
+I assume “classes” means “conjugacy classes”?
+
+The definition of conjugacy of $a, b \in G$ is
+\[
+    a \sim b
+    \iff
+    \exists g \in G \colon
+    a = g b g\inv.
+\]
+
+What I did is to go through the elements $b \in G$ and iterate through the $g
+\in G$ and see which $a$ I would get. These are the results:
+\begin{gather*}
+    [e] = \{ e \} \\
+    [\1] = \{ \1 \ssep \2\1\2 \} \\
+    [\2] = \{ \2 \ssep \1\2\1 \} \\
+    [\1\2] = \{ \1\2 \ssep \2\1 \} \\
+    [\1\2\1\2] = \{ \1\2\2\1 \}
+\end{gather*}
+
+\subsubsection{Invariant subgroup}
+
+Invariant subgroups are made from conjugacy classes. $[e]$ has to be in it in
+any case. I tried to start with $[\1]$ or $[\2]$, but the groups were either
+not normal, no groups at all or the whole group itself. So I started with the
+other two and got a normal subgroup:
+\[
+    H := \{ e \ssep \1\2 \ssep \2\1 \ssep \1\2\1\2 \}.
+\]
+
+Then I tried to pre and postmultiply it with $\1$ and got the same cosets. By
+analogy, this works with $\2$ as well. Doing the same with $\1\2$ and $\2\1$ is
+trivial since they are contained in the group, right?
+
+\subsubsection{Quotient group}
 
 \subsection{Isomorphicity}
 
@@ -230,7 +279,7 @@ The orders are written down in table~\ref{tab:orders}.
 
 Given the rotation $c$ and the reflection $b$ the elements of $D_4$ are:
 \[
-    D_4 = \{ e, c, c^2, c^3, b, bc, bc^2, bc^3 \}.
+    D_4 = \{ e\ssep c\ssep c^2\ssep c^3\ssep b\ssep bc\ssep bc^2\ssep bc^3 \}.
 \]
 Those are 8 elements in total, meaning that the isomorphicity is not ruled out
 yet.
