@@ -24,19 +24,21 @@
     skipabove=\topskip,
     innertopmargin=\topskip,
     splittopskip=\topskip,
-    frametitle={Problem Statement},
+    frametitle={Problem statement},
     frametitlerule=true,
 ]{problem}
 
 \newmdenv[%
-    backgroundcolor=black!5,
+    backgroundcolor=white,
     frametitlebackgroundcolor=black!10,
     roundcorner=5pt,
     skipabove=\topskip,
     innertopmargin=\topskip,
+    innerbottommargin=8cm,
     splittopskip=\topskip,
-    frametitle={Side Question},
+    frametitle={Side question},
     frametitlerule=true,
+    nobreak=true,
 ]{question}
 
 
@@ -70,6 +72,10 @@
 \begin{document}
 
 \maketitle
+
+Since we are likely to not cover the homework during the exercises, I added
+some questions, some rather general. I would really appreciate if you could
+write a bit for each.
 
 \section{Pauli matrices}
 
@@ -246,7 +252,8 @@ The definition of conjugacy of $a, b \in G$ is
 \]
 
 What I did is to go through the elements $b \in G$ and iterate through the $g
-\in G$ and see which $a$ I would get. These are the results:
+\in G$ and see which unique $a$ I could generate with that. These are the
+results:
 \begin{gather*}
     [e] = \{ e \} \\
     [\1] = \{ \1 \ssep \2\1\2 \} \\
@@ -254,6 +261,11 @@ What I did is to go through the elements $b \in G$ and iterate through the $g
     [\1\2] = \{ \1\2 \ssep \2\1 \} \\
     [\1\2\1\2] = \{ \1\2\2\1 \}
 \end{gather*}
+
+\begin{question}
+    Is that way of computing the conjugacy classes recommended or is there a
+    more efficient one?
+\end{question}
 
 \subsubsection{Invariant subgroup}
 
@@ -265,13 +277,61 @@ other two and got a normal subgroup:
     H := \{ e \ssep \1\2 \ssep \2\1 \ssep \1\2\1\2 \}.
 \]
 
-Then I tried to pre and postmultiply it with $\1$ and got the same cosets. By
+Then I tried to pre and post multiply it with $\1$ and got the same cosets. By
 analogy, this works with $\2$ as well. Doing the same with $\1\2$ and $\2\1$ is
 trivial since they are contained in the group, right?
 
+\begin{question}
+    Is there some algorithm to construct invariant subgroups from conjugacy
+    classes? One which does not require checking of the union actually is an
+    invariant subgroup.
+\end{question}
+
 \subsubsection{Quotient group}
 
-\subsection{Isomorphicity}
+The definition of the quotient group is:
+\[
+    G / H := \{ gH \colon g \in G \}.
+\]
+
+In this case, we have the following left cosets:
+\begin{gather*}
+    \{ \1\ssep \1\1\2\ssep \1\2\1\ssep \1\1\2\1\2 \} = \{ \1\ssep \2\ssep \1\2\1\ssep \2\1\2 \} \\
+    \{ \2\ssep \2\1\ssep \2\2\1\ssep \2\1\2\1\2 \} = \{ \1\ssep \2\ssep \1\2\1\ssep \2\1\2 \} \\
+    \{ \1\2\ssep \1\2\1\ssep \1\2\2\1\ssep \1\2\1\2\1\2 \} = \{ e\ssep \1\2\ssep \2\1\ssep \1\2\1\2 \}
+    \\
+    \{ \2\1\ssep \2\1\1\2\ssep \2\1\2\1\ssep \2\1\1\2\1\2 \} = \{ e\ssep \1\2\ssep \2\1\ssep \1\2\1\2 \}
+    \\
+    \{ \1\2\1\ssep \1\2\1\1\1\2\ssep \1\2\1\2\1\ssep \1\2\1\1\2\1\2 \} \\ \qquad = \{ \1\ssep \2\ssep \1\2\1\ssep
+    \2\1\2 \} \\
+    \{ \2\1\2\ssep \2\1\2\1\2\ssep \2\1\2\2\1\ssep \2\1\2\1\2\1\2 \} = \{ \1\ssep \2\ssep \1\2\1\ssep
+    \2\1\2 \} \\
+    \{ \1\2\1\2\ssep \1\2\1\2\1\2\ssep \1\2\1\2\2\1\ssep \1\2\1\2\1\2\1\2 \} \\ \qquad = \{ e\ssep \1\2\ssep
+    \2\1\ssep \1\2\1\2 \}
+\end{gather*}
+
+There are only two unique sets:
+\[
+    \{ e\ssep \1\2\ssep \2\1\ssep \1\2\1\2 \}
+    \eqnsep
+    \{ \1\ssep \2\ssep \1\2\1\ssep \2\1\2 \},
+\]
+which matches with my understanding of the Laplace's theorem.
+
+\begin{question}
+    Is there a shorter way than generating all the cosets and only take the
+    unique ones? It seems wasteful to me to generate all and discard most.
+\end{question}
+
+\begin{question}
+    In the lecture we had a theorem which said that the cosets of a normal
+    subgroup are disjoint. Then it said that a group can be written as a union
+    of these disjoint cosets. Are the cosets in the quotient groups those
+    disjoint cosets that make up the group if united? Is that the origin of the
+    name “factor group”?
+\end{question}
+
+\subsection{Isomorphy}
 
 \begin{problem}
     Prove that this group is isomorphic to $D_4$.
@@ -281,8 +341,52 @@ Given the rotation $c$ and the reflection $b$ the elements of $D_4$ are:
 \[
     D_4 = \{ e\ssep c\ssep c^2\ssep c^3\ssep b\ssep bc\ssep bc^2\ssep bc^3 \}.
 \]
-Those are 8 elements in total, meaning that the isomorphicity is not ruled out
+Those are 8 elements in total, meaning that the isomorphy is not ruled out
 yet.
+
+There is a normal subgroup in $D_4$:
+\[
+    \{ e\ssep c\ssep c^2\ssep c^3 \}.
+\]
+The quotient groups is
+\[
+    \{ e\ssep c\ssep c^2\ssep c^3 \}
+    \eqnsep
+    \{ b\ssep bc\ssep bc^2\ssep bc^3 \}.
+\]
+
+The coset with the identity has to match the other one for isomorphy. So
+\[
+    \{ e\ssep c\ssep c^2\ssep c^3 \}
+    \triangleq
+    \{ e\ssep \1\2\ssep \2\1\ssep \1\2\1\2 \}
+\]
+With the following rearrangement, one can see that $c \triangleq \1\2$ and
+therefore the following order is better:
+\[
+    \{ e\ssep c\ssep c^2\ssep c^3 \}
+    \triangleq
+    \{ e\ssep \1\2\ssep \1\2\1\2\ssep \2\1 \}.
+\]
+
+The other cosets map like this:
+\[
+    \{ b\ssep bc\ssep bc^2\ssep bc^3 \}
+    \triangleq
+    \{ \2\ssep \2\1\2\ssep \1\2\1\ssep \1 \}.
+\]
+
+Now I can see the isomorphism between all the elements. The elements match up
+column wise:
+\[
+    \begin{matrix}
+        e & \1 & \2 & \1\2 & \2\1 & \1\2\1 & \2\1\2 & \1\2\1\2 \\
+        e & bc^3 & b & c & c^3 & bc^2 & bc & c^2 \\
+    \end{matrix}
+\]
+There are other ways to chose this isomorphism though, since one could redefine
+$b := bc^k$ for any $k$ and still get the same result. The existence of one
+isomorphism means that they are isomorphic, though.
 
 \end{document}
 
