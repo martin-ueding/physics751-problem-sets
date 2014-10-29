@@ -179,11 +179,61 @@ table~\ref{tab:symbols} I have introduced $-e := \1\2\1\2$.
 
 \subsubsection{Order of the group}
 
+There are 8 elements in the whole thing:
+\[
+    \{ e, \1, \2, \1\2, \2\1, \2\1\2, \1\2\1, \1\2\1\2 \}.
+\]
+Therefore, the order is 8.
+
+\subsubsection{Orders of the elements}
+
+These are the powers needed to get each element back to unity:
+\begin{gather*}
+    \1^2 = e \\
+    \2^2 = e \\
+    [\1\2]^4 = [\iup \3]^4 = [-e]^2 = e \\
+    [\2\1]^4 = [-\iup \3]^4 = [-e]^2 = e \\
+    [\1\2\1]^2 = \1\2\1 \1\2\1 = e \\
+    [\2\1\2]^2 = \2\1\2 \2\1\2 = e \\
+    [\1\2\1\2]^2 = [\1\2\1\2]^4 = e
+\end{gather*}
+
+The orders are written down in table~\ref{tab:orders}.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{cc}
+        Element & Order \\
+        \midrule
+        $\1$ & 2 \\
+        $\2$ & 2 \\
+        $\1\2$ & 4 \\
+        $\2\1$ & 4 \\
+        $\1\2\1$ & 2 \\
+        $\2\1\2$ & 2 \\
+        $\1\2\1\2$ & 2
+    \end{tabular}
+    \caption{%
+        Orders of the elements.
+    }
+    \label{tab:orders}
+\end{table}
+
+\subsubsection{Classes}
+
+
 \subsection{Isomorphicity}
 
 \begin{problem}
     Prove that this group is isomorphic to $D_4$.
 \end{problem}
+
+Given the rotation $c$ and the reflection $b$ the elements of $D_4$ are:
+\[
+    D_4 = \{ e, c, c^2, c^3, b, bc, bc^2, bc^3 \}.
+\]
+Those are 8 elements in total, meaning that the isomorphicity is not ruled out
+yet.
 
 \end{document}
 
