@@ -32,6 +32,12 @@
   \@bibatendtrue
 }
 
+% Declare a switch for a colored document.
+\newif\if@color\@colorfalse
+\DeclareOption{color}{
+  \@colortrue
+}
+
 \ProcessOptions\relax
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -43,6 +49,8 @@
 \RequirePackage{graphicx}
 
 \RequirePackage{csquotes}
+
+\RequirePackage{booktabs}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                Locale, date                                 %
@@ -116,13 +124,25 @@
 % change it, just override it with another ``\hypersetup`` call.
 \hypersetup{
     breaklinks=false,
-    citecolor=darkgreen,
     colorlinks=true,
-    linkcolor=darkblue,
-    menucolor=black,
     pdfauthor={Martin Ueding},
-    urlcolor=darkblue,
 }
+
+\if@color
+    \hypersetup{
+        citecolor=darkgreen,
+        linkcolor=darkblue,
+        menucolor=black,
+        urlcolor=darkblue,
+    }
+\else
+    \hypersetup{
+        citecolor=black,
+        linkcolor=black,
+        menucolor=black,
+        urlcolor=black,
+    }
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                               Math Operators                                %
@@ -133,7 +153,13 @@
 \RequirePackage{amsthm}
 
 % Common math constructs like partial derivatives.
-\RequirePackage{commath}
+\newcommand\sbr[1]{\left[ #1 \right]}
+\newcommand\cbr[1]{\left\{ #1 \right\}}
+\newcommand\del[1]{\left( #1 \right)}
+\newcommand{\dif}{\mathop{}\!\mathrm d}
+\newcommand\pd[2]{\frac{\partial {#1}}{\partial {#2}}}
+\newcommand\od[2]{\frac{\dif {#1}}{\dif {#2}}}
+\newcommand\pdx[3]{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}
 
 % Physical units.
 \RequirePackage[output-decimal-marker={,}]{siunitx}
@@ -238,7 +264,7 @@
 {
     \IfFileExists{central-bibtex/Central}
     {\newcommand{\bibliographyfile}{central-bibtex/Central}}
-    {\newcommand{\bibliographyfile}{../../zentrale_BibTeX/Central}}
+    {\newcommand{\bibliographyfile}{../../../zentrale_BibTeX/Central}}
 }
 
 \RequirePackage[
