@@ -1,0 +1,141 @@
+\documentclass[11pt, ngerman, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+
+\usepackage{booktabs}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=black!5,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\newmdenv[%
+    backgroundcolor=black!5,
+    frametitlebackgroundcolor=black!10,
+    roundcorner=5pt,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+    frametitle={Problem Statement},
+    frametitlerule=true,
+]{problem}
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcommand\inv{^{-1}}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{2}
+
+\subject{physics751 -- Group Theory}
+\ihead{physics751 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group 1 -- Patrick Matuschek}
+\ofoot{Group 1 -- Patrick Matuschek}
+
+
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        problem number & achieved points & possible points \\
+        \midrule
+        H \arabic{problemset}.1 & &  \\
+        \midrule
+        total & & 
+    \end{tabular}
+\end{center}
+
+\section{The Alternating Group $\mathcal A_N$}
+
+\subsection{Subgroup}
+
+\begin{problem}
+    Prove that the set of all even permutations forms a subgroup of the
+    symmetric group $\mathcal S_N$.
+\end{problem}
+
+As always, there are the four group axioms to show.
+
+\begin{description}
+    \item[Closure]
+        Given a permutation $P$, it can be broken down into cycles. The number
+        of elements in the $i$th cycle is $n_i$. So $(123)$ has $n = 3$. The
+        order of the whole permutation was given in the lecture as
+        \[
+            W = \sum_i [n_1 - 1].
+        \]
+
+        When another permutation is added, the cycles are written as a
+        juxtaposition. The order will be the sum of the respective orders of
+        the permutations. The sum of two even numbers is again even, so the
+        resulting permutation is another even permutation.
+
+    \item[Unity]
+        The cycle $(1)$ is even and the neutral element.
+
+    \item[Inverse]
+        For any cycle, the inverse can be formed with elements reversed. The
+        inverse of multiple cycle is the reverse order of inverse cycles.
+        The order of the permutation does not change in this way. Therefore, an
+        inverse can always be found among the even permutations.
+
+    \item[Associativity]
+        This subgroup in spe takes it juxtaposition operation $\circ$ from the
+        symmetric group which was associative with any permutations. This
+        property is not list when only a subset of the permutations is taken
+        into account.
+\end{description}
+
+Since all axioms are fulfilled, this subset forms a group itself. I think that
+it even is a normal subgroup, since $\bar P \mathcal S_N = \mathcal S_N \bar
+P$, which is also somewhat used in the next part of this problem.
+
+\subsection{Order}
+
+\begin{problem}
+    Derive its order.
+\end{problem}
+
+Any even permutations directly turns into an odd one when the cycle $(12)$ is
+applied to it. Any odd permutation turns into an even one when the same cycle
+is applied. Applying it twice gives unity: $(12)^2 = e$.
+
+I think that $(12) \circ \mathcal A_N$ will give a set of only odd
+permutations. Those do not form a group because the closure cannot be met. The
+combination of two odd permutation gives an even permutation. However, when
+$(12)$ is applied to that set again, it must be $\mathcal A_N$ again, since
+only the unity $e$ was applied to it. By association law,
+\[
+    [(12) (12)] \mathcal A_N = (12) (12) \mathcal A_N,
+\]
+where the multiplication is read in the usual right-to-left way on the right
+side. Since the order of $\mathcal A_N$ must not change when applying $e$ to it
+(rearrangement theorem), the order of $(12) \mathcal A_N$ must the same as
+$\mathcal A_N$ itself. That would be $N!/2$.
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
