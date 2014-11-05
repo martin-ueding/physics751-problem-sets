@@ -1,0 +1,201 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[
+    bibatend,
+    color,
+]{../header}
+
+\usepackage{booktabs}
+\usepackage{pdflscape}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=black!5,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\newmdenv[%
+    backgroundcolor=black!5,
+    frametitlebackgroundcolor=black!10,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+    frametitle={Problem statement},
+    frametitlerule=true,
+]{problem}
+
+\newmdenv[%
+    backgroundcolor=white,
+    frametitlebackgroundcolor=black!10,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    innerbottommargin=8cm,
+    splittopskip=\topskip,
+    frametitle={Side question},
+    frametitlerule=true,
+    %nobreak=true,
+]{question}
+
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcommand\inv{^{-1}}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{4}
+
+\subject{physics751 -- Group Theory}
+\ihead{physics751 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group 1 -- Patrick Matuschek}
+\ofoot{Group 1 -- Patrick Matuschek}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\begin{question}
+    During the lecture the representation of the symmetric group $\mathcal S_2$
+    was given. The multiplication table was written down:
+    \[
+        T_{\mathcal S_2} =
+        \begin{pmatrix}
+            e & (12) \\
+            (12) & e
+        \end{pmatrix}.
+    \]
+
+    From there, the representation was given as
+    \[
+        D^{[]}(e) =
+        \begin{pmatrix}
+            1 & 0 \\ 0 & 1
+        \end{pmatrix}
+        \eqnsep
+        D^{[]}((12)) =
+        \begin{pmatrix}
+            0 & 1 \\ 1 & 0
+        \end{pmatrix}.
+    \]
+
+    The definition given in the lecture was, as far as I recall,
+    \[
+        D_{jk}^{[]} (g_i) =
+        \begin{cases}
+            1 & g_j g_k = g_i \\
+            0 & \text{else}
+        \end{cases}.
+    \]
+    In words, this would mean that the representation matrices for a group
+    element is a matrix that just had ones everywhere where that group element
+    appears in the multiplication table, zeros everywhere else. This is fine
+    with me.
+
+    Then the lecturer said that on some occasions the multiplication table has
+    to be rearranged in a way such that the identity is on the diagonal such
+    that $D(e) = \mathbb 1$. The rearrangement theorem asserts that this
+    rearrangement of rows and columns is possible. What concerns me is the fact
+    that this rearranging might make the indexing of group elements
+    ill-defined.
+
+    The definition of multiplication table of a group $G$ with elements $g_i$
+    that I remember is $T_{ij} := g_i g_j$. For this, there has so be something
+    that maps the \emph{set} of group elements into an \emph{ordered tuple}
+    such that $g_i$ is always the same element. Since the order itself is
+    arbitrary, I do not mind when a permutation $\pi \in \mathcal S_{|G|}$ is
+    applied such that
+    \[
+        G = \{ g_i\colon i \leq |G| \} = \{ g_{\pi(i)} \colon i \leq |G| \}
+    \]
+    still holds.
+
+    We were all asked to derive the representation of $\mathcal S_3$ at home,
+    so that is what I attempted.
+
+    This is my $\mathcal S_3$ and the order in the set is the order I use for
+    my indexing with $i$:
+    \[
+        \{ (1), (12), (13), (23), (123), (321) \}.
+    \]
+    So those are $g_1$ to $g_6$, in that order. Now I computed the
+    multiplication table using the fast multiplication and the rearrangement
+    theorem. This is the table that I got:
+
+    \begin{tabular}{c|cccccc}
+        $     $ & $(1  )$ & $(12 )$ & $(13 )$ & $(23 )$ & $(123)$ & $(321)$ \\
+        \midrule
+        $(1  )$ & $(1  )$ & $(12 )$ & $(13 )$ & $(23 )$ & $(123)$ & $(321)$ \\
+        $(12 )$ & $(12 )$ & $(1  )$ & $(321)$ & $(123)$ & $(32 )$ & $(13 )$ \\
+        $(13 )$ & $(13 )$ & $(123)$ & $(1  )$ & $(321)$ & $(12 )$ & $(23 )$ \\
+        $(23 )$ & $(23 )$ & $(321)$ & $(123)$ & $(1  )$ & $(13 )$ & $(12 )$ \\
+        $(123)$ & $(123)$ & $(13 )$ & $(23 )$ & $(12 )$ & $(321)$ & $(1  )$ \\
+        $(321)$ & $(321)$ & $(23 )$ & $(12 )$ & $(13 )$ & $(1  )$ & $(123)$ \\
+    \end{tabular}
+
+    To get the unity elements on the diagonal only, I had to exchange the last
+    two rows. One could also exchange the last two columns, but not both. This
+    is the changed table.
+
+    \begin{tabular}{c|cccccc}
+        $     $ & $(1  )$ & $(12 )$ & $(13 )$ & $(23 )$ & \textbf{(123)} & \textbf{(321)} \\
+        \midrule
+        $(1  )$ & $(1  )$ & $(12 )$ & $(13 )$ & $(23 )$ & $(123)$ & $(321)$ \\
+        $(12 )$ & $(12 )$ & $(1  )$ & $(321)$ & $(123)$ & $(32 )$ & $(13 )$ \\
+        $(13 )$ & $(13 )$ & $(123)$ & $(1  )$ & $(321)$ & $(12 )$ & $(23 )$ \\
+        $(23 )$ & $(23 )$ & $(321)$ & $(123)$ & $(1  )$ & $(13 )$ & $(12 )$ \\
+        \textbf{(321)} & $(321)$ & $(23 )$ & $(12 )$ & $(13 )$ & $(1  )$ & $(123)$ \\
+        \textbf{(123)} & $(123)$ & $(13 )$ & $(23 )$ & $(12 )$ & $(321)$ & $(1  )$ \\
+    \end{tabular}
+
+    At this point, I do not know that the meaning of $g_5$ and $g_6$ are
+    supposed to be now.
+
+    Then I tried the more formal way and took the definition. Using the
+    ordering that I defined above, $D(e)$ will not be $\mathbb 1$. The only way
+    I see to get it to work with the definition is to apply a permutation such
+    that the definition is not
+    \[
+        D_{jk}^{[]} (g_i) =
+        \begin{cases}
+            1 & g_{\pi(j)} g_{\pi(k)} = g_{\pi(i)} \\
+            0 & \text{else}
+        \end{cases}
+    \]
+    but something like
+    \[
+        D_{jk}^{[]} (g_i) =
+        \begin{cases}
+            1 & g_{\pi(j)} g_{k} = g_{i} \\
+            0 & \text{else}
+        \end{cases}
+    \]
+    where only one element is permuted. To me, this looks like $s_j$ does not
+    need to be $s_k$ even if $j = k$.
+
+    What is the correct way of doing this?
+\end{question}
+
+\section{Pauli matrices and the quaternion group $Q_4$}
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
