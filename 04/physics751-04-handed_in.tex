@@ -74,8 +74,8 @@
 \maketitle
 
 \begin{question}
-    During the lecture the representation of the symmetric group $\mathcal S_2$
-    was given. The multiplication table was written down:
+    During the lecture the regular representation of the symmetric group
+    $\mathcal S_2$ was given. The multiplication table was written down:
     \[
         T_{\mathcal S_2} =
         \begin{pmatrix}
@@ -86,12 +86,12 @@
 
     From there, the representation was given as
     \[
-        D^{[]}(e) =
+        \tens D^{[\Gamma_\text{reg}]}(e) =
         \begin{pmatrix}
             1 & 0 \\ 0 & 1
         \end{pmatrix}
         \eqnsep
-        D^{[]}((12)) =
+        \tens D^{[\Gamma_\text{reg}]}((12)) =
         \begin{pmatrix}
             0 & 1 \\ 1 & 0
         \end{pmatrix}.
@@ -99,7 +99,7 @@
 
     The definition given in the lecture was, as far as I recall,
     \[
-        D_{jk}^{[]} (g_i) =
+        \tens D_{jk}^{[\Gamma_\text{reg}]} (g_i) =
         \begin{cases}
             1 & g_j g_k = g_i \\
             0 & \text{else}
@@ -174,7 +174,7 @@
     I see to get it to work with the definition is to apply a permutation such
     that the definition is not
     \[
-        D_{jk}^{[]} (g_i) =
+        D_{jk}^{[\Gamma_\text{reg}]} (g_i) =
         \begin{cases}
             1 & g_{\pi(j)} g_{\pi(k)} = g_{\pi(i)} \\
             0 & \text{else}
@@ -182,7 +182,7 @@
     \]
     but something like
     \[
-        D_{jk}^{[]} (g_i) =
+        D_{jk}^{[\Gamma_\text{reg}]} (g_i) =
         \begin{cases}
             1 & g_{\pi(j)} g_{k} = g_{i} \\
             0 & \text{else}
