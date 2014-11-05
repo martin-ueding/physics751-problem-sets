@@ -196,6 +196,96 @@
 
 \section{Pauli matrices and the quaternion group $Q_4$}
 
+\newcommand\1{\sigma_1}
+\newcommand\2{\sigma_2}
+\newcommand\3{\sigma_3}
+
+\subsection{Multiplication table}
+
+The generators of this group to derive are $\iup\1$ and $\iup\2$. The
+previously given multiplication law is
+\[
+    \sigma_i\sigma_j = \delta_{ij} + \iup \epsilon_{ijk} \sigma_k.
+\]
+Now with $g_1 := \iup\1$ and $g_2 := \iup\2$ we can write
+\[
+    g_1 g_2 = \iup^2 \1\2 = - \iup \sigma_3.
+\]
+I will call this element $g_3 := - \iup \sigma_3$.
+
+\newcommand\qi{\mathbf i}
+\newcommand\qj{\mathbf j}
+\newcommand\qk{\mathbf k}
+
+Since I know quaterions from \parencite[§11.1]{penrose-road_to_reality}, I will
+now define:
+\[
+    \qi := g_1 = \iup\1
+    \eqnsep
+    \qj := g_2 = \iup\2
+    \eqnsep
+    \qk := g_3 = -\iup\3.
+\]
+The identity element $e$ can be made up from $\qi^4$ or $\qj^4$ and $\qk^4$.
+Therefore, the order of those elements is 4, by the way. These fulfill the
+equations that Hamilton wrote onto a stone of Dublin's Brougham Bridge on
+\printdate{1843-10-16} \parencite[198]{penrose-road_to_reality}:
+\[
+    \qi^2 = \qj^2 = \qk^2 = \qi\qj\qk = -1.
+\]
+
+The last one is not trivial to see, so I show that here:
+\[
+    \qi\qj\qk = \iup\1 \iup\2 [-\iup\3] = - \iup^3 \1\2\3 = - \iup^4 \1\1
+    = - \1^2 = -1.
+\]
+So I am pretty confident that my new generators $\qi$ and $\qj$ yield a group
+which is isomorphic to $Q_4$.
+
+The multiplication table comes here:
+\[
+    \tens T =
+    \begin{pmatrix}
+         1   &  \qi &  \qj &  \qk & -1   & -\qi & -\qj & -\qk \\
+         \qi & -1   &  \qk & -\qj & -\qi &  1   & -\qk &  \qj \\
+         \qj & -\qk & -1   &  \qi & -\qj &  \qk &  1   & -\qi \\
+         \qk &  \qj & -\qi & -1   & -\qk & -\qj &  \qi &  1   \\
+        -1   & -\qi & -\qj & -\qk &  1   &  \qi &  \qj &  \qk \\
+        -\qi &  1   & -\qk &  \qj &  \qi & -1   &  \qk & -\qj \\
+        -\qj &  \qk &  1   & -\qi &  \qj & -\qk & -1   &  \qi \\
+        -\qk & -\qj &  \qi &  1   &  \qk &  \qj & -\qi & -1  
+    \end{pmatrix}.
+\]
+This could also be written in terms of the $\sigma_i$:
+\[
+    \tens T =
+    \begin{pmatrix}
+         e   &  \iup\1 &  \iup\2 &  -\iup\3 & -e   & -\iup\1 & -\iup\2 & \iup\3 \\
+         \iup\1 & -e   &  -\iup\3 & -\iup\2 & -\iup\1 &  e   & \iup\3 &  \iup\2 \\
+         \iup\2 & \iup\3 & -e   &  \iup\1 & -\iup\2 &  -\iup\3 &  e   & -\iup\1 \\
+         -\iup\3 &  \iup\2 & -\iup\1 & -e   & \iup\3 & -\iup\2 &  \iup\1 &  e   \\
+        -e   & -\iup\1 & -\iup\2 & \iup\3 &  e   &  \iup\1 &  \iup\2 &  -\iup\3 \\
+        -\iup\1 &  e   & \iup\3 &  \iup\2 &  \iup\1 & -e   &  -\iup\3 & -\iup\2 \\
+        -\iup\2 &  -\iup\3 &  e   & -\iup\1 &  \iup\2 & \iup\3 & -1   &  \iup\1 \\
+        \iup\3 & -\iup\2 &  \iup\1 &  e   &  -\iup\3 &  \iup\2 & -\iup\1 & -e  
+    \end{pmatrix}.
+\]
+Writing this out using only the generators seems like a really bad idea:
+\[
+    \tens T =
+    \begin{pmatrix}
+         [\iup\1]^4   &  \iup\1 &  \iup\2 &  \iup\1\iup\1 & [\iup\1]^2   & [\iup\1]^2\iup\1 & [\iup\1]^2\iup\2 & \iup\2\iup\1 \\
+         \iup\1 & [\iup\1]^2   &  \iup\1\iup\1 & [\iup\1]^2\iup\2 & [\iup\1]^2\iup\1 &  [\iup\1]^4   & \iup\2\iup\1 &  \iup\2 \\
+         \iup\2 & \iup\2\iup\1 & [\iup\1]^2   &  \iup\1 & [\iup\1]^2\iup\2 &  \iup\1\iup\1 &  [\iup\1]^4   & [\iup\1]^2\iup\1 \\
+         \iup\1\iup\1 &  \iup\2 & [\iup\1]^2\iup\1 & [\iup\1]^2   & \iup\2\iup\1 & [\iup\1]^2\iup\2 &  \iup\1 &  [\iup\1]^4   \\
+        [\iup\1]^2   & [\iup\1]^2\iup\1 & [\iup\1]^2\iup\2 & \iup\2\iup\1 &  [\iup\1]^4   &  \iup\1 &  \iup\2 &  \iup\1\iup\1 \\
+        [\iup\1]^2\iup\1 &  [\iup\1]^4   & \iup\2\iup\1 &  \iup\2 &  \iup\1 & [\iup\1]^2   &  \iup\1\iup\1 & [\iup\1]^2\iup\2 \\
+        [\iup\1]^2\iup\2 &  \iup\1\iup\1 &  [\iup\1]^4   & [\iup\1]^2\iup\1 &  \iup\2 & \iup\2\iup\1 & [\iup\1]^21   &  \iup\1 \\
+        \iup\2\iup\1 & [\iup\1]^2\iup\2 &  \iup\1 &  [\iup\1]^4   &  \iup\1\iup\1 &  \iup\2 & [\iup\1]^2\iup\1 & [\iup\1]^2  
+    \end{pmatrix}.
+\]
+I will just stick to the first one.
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
