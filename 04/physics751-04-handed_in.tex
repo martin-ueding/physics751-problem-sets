@@ -319,6 +319,76 @@ We have
 \]
 where the orders can be read off the needed exponent to get the elements to 1.
 
+\subsection{Conjugacy classes}
+
+\begin{problem}
+    What are the conjugacy classes of this group?
+\end{problem}
+
+I again did this with the method that I have used on the previous problem set
+and got:
+\begin{gather*}
+    [1] = \{ 1, -1 \} \\
+    [\qi] = \{ \qi, -\qi \} \\
+    [\qj] = \{ \qj, -\qj \} \\
+    [\qk] = \{ \qk, -\qk \}
+\end{gather*}
+
+\subsection{Proper invariant subgroups}
+
+\begin{problem}
+    What are the proper invariant subgroups of this group?
+\end{problem}
+
+Those proper invariant subgroups have to be unisons of conjugacy classes. The
+number of elements in those unions must be a divisor the order of the whole
+group, in this case eight (Lagrange's theorem).
+
+The invariant groups that I found are:
+\begin{gather*}
+    \{ 1, -1 \} \\
+    \{ 1, -1, \qi, -\qi \} \\
+    \{ 1, -1, \qj, -\qj \} \\
+    \{ 1, -1, \qk, -\qk \}
+\end{gather*}
+Other unions are now allowed since they would either violate Lagrange's theorem
+or be a trivial subgroup.
+
+\subsection{Quotient groups}
+
+\begin{problem}
+    What are the pertinent quotient groups?
+\end{problem}
+
+The first one is
+\[
+    Q_4 / \{ 1, -1 \}
+    = \left\{
+        \{ 1, -1 \},
+        \{ \qi, -\qi \},
+        \{ \qj, -\qj \},
+        \{ \qk, -\qk \}
+    \right\}.
+\]
+Then for each of the other subgroups, they are constructed like this:
+\begin{gather*}
+    Q_4 / \{ 1, -1, \qi, -\qi \}
+    = \left\{
+        \{ 1, -1, \qi, -\qi \},
+        \{ \qj, \qk, -\qj, -\qk \}
+    \right\} \\
+    Q_4 / \{ 1, -1, \qj, -\qj \}
+    = \left\{
+        \{ 1, -1, \qj, -\qj \},
+        \{ \qi, \qk, -\qi, -\qk \}
+    \right\} \\
+    Q_4 / \{ 1, -1, \qk, -\qk \}
+    = \left\{
+        \{ 1, -1, \qk, -\qk \},
+        \{ \qi, \qj, -\qi, -\qj \}
+    \right\}
+\end{gather*}
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
