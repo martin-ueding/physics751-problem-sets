@@ -1,0 +1,232 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[
+    bibatend,
+    color,
+]{../header}
+
+\usepackage{booktabs}
+\usepackage{pdflscape}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=black!5,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\newmdenv[%
+    backgroundcolor=black!5,
+    frametitlebackgroundcolor=black!10,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+    frametitle={Problem statement},
+    frametitlerule=true,
+]{problem}
+
+\newmdenv[%
+    backgroundcolor=white,
+    frametitlebackgroundcolor=black!10,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    innerbottommargin=8cm,
+    splittopskip=\topskip,
+    frametitle={Side question},
+    frametitlerule=true,
+    %nobreak=true,
+]{question}
+
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcommand\inv{^{-1}}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{6}
+
+\subject{physics751 -- Group Theory}
+\ihead{physics751 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group 1 -- Patrick Matuschek}
+\ofoot{Group 1 -- Patrick Matuschek}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\section{A representation of $D_3$ on polynomials}
+
+\begin{problem}
+    Consider the 6-dimensional space of polynomials of degree 2 in two
+    variables $(x, y)$. Assuming that $x$ and $y$ transform under the dihedral
+    group $D_3$ as the coordinates of a 2-vector with $\tens D^2(b)$, $\tens
+    D^2(c)$ and $\tens D^2(c^2)$, we obtain a 6-dimensional representation of
+    $D_3$ on the above function space. Write down the matrices of this
+    representation …
+\end{problem}
+
+The vectors of the six dimensional vector space are the various $f(x, y)$. The
+components of the vectors are the $a_i$. Addition of multiple vectors $f$ is
+simply addition of the vectors $\vec a$. Exactly as I did on the last problem
+set, I write everything in terms of vectors and matrices. The polynomial can be
+written in components with the basis vectors $\ev$ out of $\{1, x, y, x^2, xy,
+y^2\}$ like so:
+\[
+    f(x, y) = a^i \ev_i.
+\]
+Now I can find the six dimensional representation such that it fulfills this:
+\[
+    f\del{\tens D^2(g) \begin{pmatrix}
+        x \\ y
+    \end{pmatrix}} \overset!= \sbr{\tens D^6(g) \vec a}^i \ev_i.
+\]
+
+I will start with the first one:
+\begin{align*}
+    f\del{\tens D^2(c) \begin{pmatrix}
+        x \\ y
+    \end{pmatrix}}
+    &= f(x, -y) \\
+    &= a_1 + a_2 x - a_3 y + a_4 x^2 - a_5 xy + a_6 y^2 \\
+    \intertext{%
+        Now I can write this as a scalar product of a transformed vector:
+    }
+    &=
+    \begin{pmatrix}
+        a_1 \\ a_2 \\ - a_3 \\ a_4 \\ - a_5 \\ a_6
+    \end{pmatrix}
+    \begin{pmatrix}
+        1 \\ x \\ y \\ x^2 \\ xy \\ y^2
+    \end{pmatrix}. \\
+    \intertext{%
+        The matrix that has transformed $\vec a$ can be read off. To simplify,
+        I omit all the zeros in the matrices.
+    }
+    &=
+    \sbr{
+        \begin{pmatrix}
+            1 & & & & & \\
+            & 1 & & & & \\
+            & & -1 & & & \\
+            & & & 1 & & \\
+            & & & & -1 & \\
+            & & & & & 1 \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            a_1 \\ a_2 \\ a_3 \\ a_4 \\ a_5 \\ a_6
+        \end{pmatrix}
+    }
+    \begin{pmatrix}
+        1 \\ x \\ y \\ x^2 \\ xy \\ y^2
+    \end{pmatrix}
+\end{align*}
+From this, I can recover:
+\[
+    D^6(c) =
+    \begin{pmatrix}
+        1 & & & & & \\
+          & 1 & & & & \\
+          & & -1 & & & \\
+          & & & 1 & & \\
+          & & & & -1 & \\
+          & & & & & 1 \\
+    \end{pmatrix}.
+\]
+
+The next one is very similar, except that there are more terms.
+\begin{align*}
+    f\del{\tens D^2(c) \begin{pmatrix}
+        x \\ y
+    \end{pmatrix}}
+    &= f\del{- \frac12 x - \frac{\sqrt3}2 y, \frac{\sqrt 3}2 x - \frac12 d} \\
+    \intertext{%
+        Expanding this gives a lot of terms:
+    }
+    &= a_1 + a_2 \sbr{- \frac12 x - \frac{\sqrt 3}{2} y} + a_3 \sbr{\frac{\sqrt
+    3}2 x - \frac 12 y} + a_4 \sbr{- \frac 12 x - \frac{\sqrt 3}2 y}^2 \\&\qquad + a_5 \sbr{-
+    \frac12 x - \frac{\sqrt 3}2 y} \sbr{\frac{\sqrt 3}2 x - \frac12 y} + a_6
+    \sbr{\frac{\sqrt{3}}2 x - \frac 12 y}^2. \\
+    \intertext{%
+        The next step is to expand all the terms and regroup them with respect
+        to the basis vectors. I omit typesetting the expansion here and skip
+        right to the regrouping.
+    }
+    &= a_1 + x\sbr{- \frac12 a_2 + \frac{\sqrt 3}2 a_3} + y \sbr{-\frac{\sqrt
+    3}2 a_2 - \frac12 a_3} + x^2 \sbr{\frac14 a_4 - \frac{\sqrt 3}4 a_5 + \frac 34
+    a_6} \\&\qquad + xy \sbr{\frac32 a_4 - \frac12 a_5 - \frac{\sqrt 3}2 a_6} + y^2
+    \sbr{\frac 34 a_4 + \frac{\sqrt 3}4 a_5 + \frac 14 a_6}
+\end{align*}
+The matrix can be read off here rather directly. I obtain
+\[
+    \tens D^6(c) =
+    \begin{pmatrix}
+        1 & & & & & \\
+          & -\frac12 & \frac{\sqrt 3}2 & & & \\
+          & - \frac{\sqrt 3}2 & -\frac12 & & & \\
+          & & & \frac 14 & - \frac{\sqrt{3}}4 & \frac34 \\
+          & & & \frac34 & - \frac12 & - \frac{\sqrt 3}2 \\
+          & & & \frac34 & \frac{\sqrt 3}4 & \frac 14
+    \end{pmatrix}.
+\]
+
+The same can be done for the group element $c^2$, were I yield
+\[
+    \tens D^6(c^2) =
+    \begin{pmatrix}
+        1 & & & & & \\
+          & -\frac12 & -\frac{\sqrt 3}2 & & & \\
+          & \frac{\sqrt 3}2 & \frac12 & & & \\
+          & & & \frac 14 & \frac{\sqrt{3}}4 & \frac34 \\
+          & & & -\frac34 & -1 & - \frac{\sqrt 3}2 \\
+          & & & \frac34 & \frac{\sqrt 3}4 & \frac 14
+    \end{pmatrix}.
+\]
+
+To be thorough, one should now test $[\tens D^6(b)]^2 = \mathbb 1_6$ and
+$[\tens D^6(c)]^2 = \tens D^6(c^2)$ since a representation must behave like the
+group elements.
+
+\begin{problem}
+    … and identify the invariant subspaces under $D_3$ and the corresponding
+    irreducible representations.
+\end{problem}
+
+There is a $\R^1$ subspace which does not do anything. In this concrete case it
+is just a constant summand on the functions, which is invariant under any
+rotation or reflection.
+
+Then there is the two dimensional representation which seems to be the
+transpose of the $\tens D^6$. The fact that it is transposed seems a little
+strange, maybe I did something wrong in my derivation? The fact that they are
+almost equal is probably not too surprising, since there is only one
+irreducible representation with dimension two in this representation.
+
+The last one is a three dimensional representation and it seems rather
+irreducible as well since the submatrix is dense.
+
+The three irreducible representation are the trivial one, the $\tens D^2$ that
+was given on the problem set transposed and the new three dimensional one that
+is in the bottom right corner of all the three matrices that I have derived.
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
