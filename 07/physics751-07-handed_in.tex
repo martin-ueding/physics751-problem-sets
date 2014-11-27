@@ -1,0 +1,210 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[
+    bibatend,
+    color,
+]{../header}
+
+\usepackage{booktabs}
+\usepackage{pdflscape}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=white,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\newmdenv[%
+    backgroundcolor=SframeBackground,
+    frametitlebackgroundcolor=SframeTitleBackground,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+    frametitle={Problem statement},
+    frametitlerule=true,
+]{problem}
+
+\newmdenv[%
+    backgroundcolor=white,
+    frametitlebackgroundcolor=SframeTitleBackground,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    innerbottommargin=8cm,
+    splittopskip=\topskip,
+    frametitle={Side question},
+    frametitlerule=true,
+    %nobreak=true,
+]{question}
+
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcommand\inv{^{-1}}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{7}
+
+\subject{physics751 -- Group Theory}
+\ihead{physics751 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group 1 -- Patrick Matuschek}
+\ofoot{Group 1 -- Patrick Matuschek}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\section{The character table of $D_4$}
+
+\subsection{Character table}
+
+\begin{problem}
+    Compute the character table for $D_4$.
+
+    \emph{Hint}: Make use of the first orthogonality theorem for characters.
+\end{problem}
+
+The group $D_4$ is given by
+\[
+    D_4 = \{ e, c, c^2, c^3, b, bc, bc^2, bc^3 \}.
+\]
+The conjugacy classes are
+\[
+    c_1 = \{ e \}
+    \eqnsep
+    c_2 = \{ c, c^3 \}
+    \eqnsep
+    c_3 = \{ c^2 \}
+    \eqnsep
+    c_4 = \{ b, bc^2 \}
+    \eqnsep
+    c_5 = \{ bc, bc^3 \}.
+\]
+
+There are five classes, therefore the are five irreducible representations of
+this group. Their dimensions must be
+\[
+    8 = 1 + 1 + 1 + 1 + 2^2.
+\]
+
+The dimensions alone give the $\chi_1$, since the class $c_1$ is the one that
+contains the identity. The first represenation, $\Gamma_1$ is always the
+trivial one, where everything is mapped to 1. Therefore, the characters for all
+classes are 1. I summarize this information in the following character table:
+
+\begin{tabular}{c|ccccc}
+    & $\chi_1$ & $\chi_2$ & $\chi_3$ & $\chi_4$ & $\chi_5$ \\
+    \midrule
+    $\Gamma_1$ & 1 & 1 & 1 & 1 & 1 \\
+    $\Gamma_2$ & 1 & & & & \\
+    $\Gamma_3$ & 1 & & & & \\
+    $\Gamma_4$ & 1 & & & & \\
+    $\Gamma_5$ & 2 & & & & \\
+\end{tabular}
+
+In the one dimensional representations, where the group elements get mapped to
+a scalar, the character is the representation element itself. Together with the
+way the group product is mapped to the matrix multiplication, I get
+\[
+    \chi_2^{\Gamma_2}
+    = \chi^{\Gamma_2}(c)
+    = \chi^{\Gamma_2}(c^3)
+    = \chi^{\Gamma_2}(c) \chi^{\Gamma_2}(c^2).
+\]
+This implies
+\[
+    \chi^{\Gamma_2}(c^2) = 1.
+\]
+That works in every one dimensional representation, so $\Gamma_1$ to
+$\Gamma_4$. This gives more entries in the table. The orthonormality relation
+for the columns gives me the $\chi_3^{\Gamma_5}$. This has to be $\pm 2$. Since
+the columns have to be orthogonal, only $-2$ is a viable option.
+
+\begin{tabular}{c|SSSSS}
+    & {$\chi_1$} & {$\chi_2$} & {$\chi_3$} & {$\chi_4$} & {$\chi_5$} \\
+    \midrule
+    $\Gamma_1$ & 1 & 1 & 1 & 1 & 1 \\
+    $\Gamma_2$ & 1 & & 1 & & \\
+    $\Gamma_3$ & 1 & & 1 & & \\
+    $\Gamma_4$ & 1 & & 1 & & \\
+    $\Gamma_5$ & 2 & & -2 & & \\
+\end{tabular}
+
+The row sum of squared characters (times number of elements on the class) in
+the last row is already 8. That means that all other characters have to be
+zero.
+
+$b$ is its own inverse. Its character in the one dimensional representations
+can only be $\pm 1$ then. For the classes $c_2$ and $c_5$, the order of the
+elements is 4. Since I assume a real carrier space (can I always do that?), the
+only options are $\pm 1$ as well.
+
+The table looks like this now:
+
+\begin{tabular}{c|SSSSS}
+    & {$\chi_1$} & {$\chi_2$} & {$\chi_3$} & {$\chi_4$} & {$\chi_5$} \\
+    \midrule
+    $\Gamma_1$ & 1 & 1 & 1 & 1 & 1 \\
+    $\Gamma_2$ & 1 & \pm 1 & 1 & \pm 1 & \pm 1 \\
+    $\Gamma_3$ & 1 & \pm 1 & 1 & \pm 1 & \pm 1 \\
+    $\Gamma_4$ & 1 & \pm 1 & 1 & \pm 1 & \pm 1 \\
+    $\Gamma_5$ & 2 & 0 & -2 & 0 & 0 \\
+\end{tabular}
+
+The squared row and column sums all check out to be 8, so the magnitudes of all
+characters seems to be fine. Now the signs have to be chosen in a way that all
+the rows and columns are orthonormal. I chose the signs stepwise such that the
+new row is orthogonal to the ones that are fixed until then. This is the table
+that I got:
+
+\begin{tabular}{c|SSSSS}
+    & {$\chi_1$} & {$\chi_2$} & {$\chi_3$} & {$\chi_4$} & {$\chi_5$} \\
+    \midrule
+    $\Gamma_1$ & 1 & 1 & 1 & 1 & 1 \\
+    $\Gamma_2$ & 1 & 1 & 1 & -1 & -1 \\
+    $\Gamma_3$ & 1 & -1 & 1 & 1 & -1 \\
+    $\Gamma_4$ & 1 & -1 & 1 & -1 & 1 \\
+    $\Gamma_5$ & 2 & 0 & -2 & 0 & 0 \\
+\end{tabular}
+
+As far as I can tell, all the rows and columns are orthogonal and sum to 8 in
+the appropriate manner.
+
+\begin{question}
+    Maybe there is a more systematic way to chose the signs. I set up a system
+    of equations for all the scalar products that have to vanish. Since this
+    was a non linear system of equations I did not know of any systematic
+    approach. Is there one?
+\end{question}
+
+
+\subsection{Representation product}
+
+\begin{problem}
+    Let $D^{(5)}$ denote the two-dimensional irreducible representation of
+    $D_4$. Check whether the product $D^{(5)} \otimes D^{(5)}$ is reducible and
+    calculate the Clebsch-Gordan decomposition if necessary.
+\end{problem}
+
+\end{document}
+
+% vim: spell spelllang=en tw=79

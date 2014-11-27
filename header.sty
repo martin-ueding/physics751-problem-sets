@@ -79,9 +79,20 @@
 
 \RequirePackage[usenames, dvipsnames]{xcolor}
 
-\colorlet{darkred}{red!70!black}
-\colorlet{darkblue}{blue!70!black}
-\colorlet{darkgreen}{green!40!black}
+\if@color
+    \colorlet{darkred}{red!70!black}
+    \colorlet{darkblue}{blue!70!black}
+    \colorlet{darkgreen}{green!40!black}
+    \colorlet{SframeBackground}{black!5}
+    \colorlet{SframeTitleBackground}{black!10}
+\else
+    \colorlet{darkred}{black}
+    \colorlet{darkblue}{black}
+    \colorlet{darkgreen}{black}
+    \colorlet{SframeBackground}{white}
+    \colorlet{SframeTitleBackground}{white}
+\fi
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                         Font and font like settings                         %
@@ -126,23 +137,11 @@
     breaklinks=false,
     colorlinks=true,
     pdfauthor={Martin Ueding},
+    citecolor=darkgreen,
+    linkcolor=darkblue,
+    menucolor=black,
+    urlcolor=darkblue,
 }
-
-\if@color
-    \hypersetup{
-        citecolor=darkgreen,
-        linkcolor=darkblue,
-        menucolor=black,
-        urlcolor=darkblue,
-    }
-\else
-    \hypersetup{
-        citecolor=black,
-        linkcolor=black,
-        menucolor=black,
-        urlcolor=black,
-    }
-\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                               Math Operators                                %
