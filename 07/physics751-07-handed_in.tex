@@ -196,7 +196,6 @@ the appropriate manner.
     approach. Is there one?
 \end{question}
 
-
 \subsection{Representation product}
 
 \begin{problem}
@@ -204,6 +203,61 @@ the appropriate manner.
     $D_4$. Check whether the product $D^{(5)} \otimes D^{(5)}$ is reducible and
     calculate the Clebsch-Gordan decomposition if necessary.
 \end{problem}
+
+The expansion works like this:
+\[
+    D^{\Gamma_5 \times \Gamma_5}
+    = D^{\Gamma_5} \otimes D^{\Gamma_5}
+    = \sum_i a_i D^{\Gamma_i} 
+\]
+
+The expansion coefficients can be computed with
+\[
+    a_i = \bracket{\vec\chi^{\Gamma_i}, \vec\chi^{\Gamma_5} \vec\chi^{\Gamma_5}}.
+\]
+
+The character vectors are given by:
+\begin{gather*}
+    \vec\chi^{\Gamma_1} = \begin{pmatrix} 1 & 1 & 1 & 1 & 1 \end{pmatrix} \\
+    \vec\chi^{\Gamma_2} = \begin{pmatrix} 1 & 1 & 1 & -1 & -1 \end{pmatrix} \\
+    \vec\chi^{\Gamma_3} = \begin{pmatrix} 1 & -1 & 1 & 1 & -1 \end{pmatrix} \\
+    \vec\chi^{\Gamma_4} = \begin{pmatrix} 1 & -1 & 1 & -1 & 1 \end{pmatrix} \\
+    \vec\chi^{\Gamma_5} = \begin{pmatrix} 2 & 0 & -2 & 0 & 0 \end{pmatrix}
+\end{gather*}
+The order of the group has to be divided out, the number of elements on each
+class has to be taken into account.
+
+All that is left is to compute the scalar products. The second term is
+\[
+    \vec\chi^{\Gamma_5} \vec\chi^{\Gamma_5} =
+    \begin{pmatrix}
+        4 & 0 & 4 & 0 & 0
+    \end{pmatrix}.
+\]
+Now I can compute the coefficients.
+\begin{align*}
+    a_1
+    &= \bracket{\vec\chi^{\Gamma_1}, \vec\chi^{\Gamma_5} \vec\chi^{\Gamma_5}} \\
+    &= \frac{1}{8}[1 \cdot 1 \cdot 4 + 1 \cdot 1 \cdot 4] \\
+    &= 1 \\
+    \intertext{%
+        Since the character vectors do not differ from the first one, the
+        scalar products are all the same.
+    }
+    a_2 &= 1 \\
+    a_3 &= 1 \\
+    a_4 &= 1 \\
+    a_5
+    &= \bracket{\vec\chi^{\Gamma_1}, \vec\chi^{\Gamma_5} \vec\chi^{\Gamma_5}} \\
+    &= \frac{1}{8}[1 \cdot 2 \cdot 4 + 1 \cdot [-2] \cdot 4] \\
+    &= 0
+\end{align*}
+So I end up with
+\[
+    D^{\Gamma_5 \times \Gamma_5}
+    = D^{\Gamma_5} \otimes D^{\Gamma_5}
+    = D^{\Gamma_1} + D^{\Gamma_2} + D^{\Gamma_3} + D^{\Gamma_4}.
+\]
 
 \end{document}
 
