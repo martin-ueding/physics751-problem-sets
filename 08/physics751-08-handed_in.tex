@@ -189,6 +189,69 @@ far:
 
 \subsection{Complete character table}
 
+The product of $K_3$ and $K_4$ is a bit lengthy:
+\begin{gather*}
+    (12)(34) (123) = (243) \\
+    (12)(34) (132) = (143) \\
+    (12)(34) (124) = (234) \\
+    (12)(34) (142) = (134) \\
+    (12)(34) (134) = (142) \\
+    (12)(34) (143) = (132) \\
+    (12)(34) (234) = (124) \\
+    (12)(34) (243) = (123) \\
+    %
+    (13)(24) (123) = (142) \\
+    (13)(24) (132) = (234) \\
+    (13)(24) (124) = (143) \\
+    (13)(24) (142) = (123) \\
+    (13)(24) (134) = (243) \\
+    (13)(24) (143) = (124) \\
+    (13)(24) (234) = (132) \\
+    (13)(24) (243) = (134) \\
+    %
+    (14)(23) (123) = (134) \\
+    (14)(23) (132) = (124) \\
+    (14)(23) (124) = (132) \\
+    (14)(23) (142) = (243) \\
+    (14)(23) (134) = (123) \\
+    (14)(23) (143) = (234) \\
+    (14)(23) (234) = (143) \\
+    (14)(23) (243) = (142)
+\end{gather*}
+When all elements are taken together, this is just
+\[
+    K_3 K_4 = 3 K_4.
+\]
+This means that the class constants are just $c_{34}^3 = 3$, all other
+$c_{34}^k = 0$. With
+\begin{align*}
+    |K_3| |K_4| \chi^{\Gamma_\nu}_3 \chi^{\Gamma_\nu}_4 &= d_\nu c_{34}^3
+    \chi^{\Gamma_\nu}_3 \\
+    \iff 4 \cdot 8 \chi^{\Gamma_\nu}_3 \chi^{\Gamma_\nu}_4 &= d_\nu 3 \chi^{\Gamma_\nu}_3 \\
+    \iff \chi^{\Gamma_\nu}_4 &= d_\nu \frac{3}{32}
+\end{align*}
+
+This lets me fill the character table with more elements. I have included the
+number of elements in each conjugacy class so aid the application of the
+orthogonality theorem.
+
+\begin{tabular}{c|ccccc}
+    & $\chi_1$ & $\chi_2$ & $\chi_3$ & $\chi_4$ & $\chi_5$ \\
+    \midrule
+    $|K|$ & 1 & 6 & 4 & 8 & 6 \\
+    \midrule
+    $\Gamma_1$ & 1 & 1 & 1 & 1 & 1 \\
+    $\Gamma_2$ & 1 & $-1$ & 1 & 1 & $-1$ \\
+    $\Gamma_3$ & 2 & & $10/9$ & 3/16 & \\
+    $\Gamma_4$ & 3 & & $5/3$ & 9/32 & \\
+    $\Gamma_5$ & 3 & & $5/3$ & 9/32 & \\
+\end{tabular}
+
+The remaining entries should be computable by the orthogonality theorems.
+However, the table is inconsistent as it is. The sum of $\chi_3$ squared is not
+$4!/4$, which should be the result. The sum of $\chi_4$ squared should be
+$4!/8$, but it is not. The computed characters must be wrong.
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
