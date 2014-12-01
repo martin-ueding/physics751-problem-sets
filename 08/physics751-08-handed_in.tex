@@ -1,0 +1,133 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[
+    bibatend,
+    color,
+]{../header}
+
+\usepackage{booktabs}
+\usepackage{pdflscape}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=white,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\newmdenv[%
+    backgroundcolor=SframeBackground,
+    frametitlebackgroundcolor=SframeTitleBackground,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+    frametitle={Problem statement},
+    frametitlerule=true,
+]{problem}
+
+\newmdenv[%
+    backgroundcolor=white,
+    frametitlebackgroundcolor=SframeTitleBackground,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    innerbottommargin=8cm,
+    splittopskip=\topskip,
+    frametitle={Side question},
+    frametitlerule=true,
+    %nobreak=true,
+]{question}
+
+\DeclareMathOperator{\Tr}{Tr}
+
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcommand\inv{^{-1}}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{8}
+
+\subject{physics751 -- Group Theory}
+\ihead{physics751 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group 1 -- Patrick Matuschek}
+\ofoot{Group 1 -- Patrick Matuschek}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\section{The character table of $S_4$}
+
+\subsection{Parity}
+
+\begin{problem}
+    Identify the two 1-dim.\ representations associated with the parity of the
+    elements of $S_4$.
+\end{problem}
+
+The first one dimensional representation ($\Gamma_1$) is the trivial one.
+Everything gets mapped to 1. The second one ($\Gamma_2$) could be the
+representation that maps to 1 and $-1$ depending on the parity. This means that
+\begin{align*}
+    D^{\Gamma_2}(K_1)& = 1 \\
+    D^{\Gamma_2}(K_2)& = -1 \\
+    D^{\Gamma_2}(K_3)& = 1 \\
+    D^{\Gamma_2}(K_4)& = 1 \\
+    D^{\Gamma_2}(K_5)& = -1 \\
+\end{align*}
+
+\section{Real characters}
+
+\begin{problem}
+    Show that the characters of all irreducible unitary representations of
+    $S_n$ are real.
+\end{problem}
+
+\begin{proof}
+    The inverse of any permutation in $S_n$ has the same cycle structure as the
+    permutation itself. All elements of the same cycle structure are in the
+    same conjugacy class. Each conjugacy class has one character, which is the
+    same for every contained element. Therefore, $g$ and $g\inv$ have the same
+    character. This means
+    \begin{align*}
+        \Tr\del{\tens D(g)} &= \Tr\del{\tens D(g\inv)}. \\
+        \intertext{%
+            The representation is taken to be unitary. This means that we can
+            write the representation matrix of the inverse as the hermitian
+            adjoint.
+        }
+        \Tr\del{\tens D(g)} &= \Tr\del{\tens D(g)^\dagger} \\
+        \intertext{%
+            The trace of the adjoint is just complex conjugated.
+        }
+        \Tr\del{\tens D(g)} &= \Tr\del{\tens D(g)}^* \\
+        \intertext{%
+            Both sides feature the same trace, the character of $g$.
+        }
+        \chi(g) &= \chi(g)^*
+    \end{align*}
+    This means that the characters are real.
+\end{proof}
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
