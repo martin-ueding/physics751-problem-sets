@@ -162,10 +162,29 @@ Therefore
     c_{33}^3 = 2.
 \]
 
+\begin{problem}
+    Hint: Use
+    \[
+        |K_i| |K_j| \chi^{(\nu)}(K_i) \chi^{(\nu)}(K_j)
+        = d_\nu \sum_k c_{ij}^k D^{(\nu)}(K_k)
+    \]
+    from your lecture.
+\end{problem}
+
 The formula that is given in the hint seems to have scalars on the left side
-and the matrices (the representation) on the right. To me, having the character
-on the right side as well makes more sense. Setting $i = j = 3$ into the
-equation, this gives me
+and the matrices (the representation $D^{(\nu)}(K_k)$) on the right. To me,
+having the character on the right side as well makes more sense.
+
+I found \parencite[(4.64)]{Luedeling/physics751-notes}, which is
+\[
+    n_a n_b \chi_{(\mu)}^a \chi_{(\mu)}^b = \chi_{(\mu)}^1 \sum_c c_{abc} n_c
+    \chi_{(\mu)}^c.
+\]
+So $D^{(\nu)}(K_k)$ needs to be replaced by $|K_k| \chi^{(\nu)}(K_k)$ in the
+notation from the exercise sheet.
+
+Setting $i = j
+= 3$ into the equation, this gives me
 \[
     \chi^{\Gamma_3}_3 = \frac{10}{9}
     \eqnsep
@@ -238,7 +257,7 @@ orthogonality theorem.
 \begin{tabular}{c|ccccc}
     & $\chi_1$ & $\chi_2$ & $\chi_3$ & $\chi_4$ & $\chi_5$ \\
     \midrule
-    $|K|$ & 1 & 6 & 4 & 8 & 6 \\
+    $|K|$ & 1 & 6 & 3 & 8 & 6 \\
     \midrule
     $\Gamma_1$ & 1 & 1 & 1 & 1 & 1 \\
     $\Gamma_2$ & 1 & $-1$ & 1 & 1 & $-1$ \\
