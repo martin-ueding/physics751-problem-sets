@@ -92,7 +92,7 @@ representation that maps to 1 and $-1$ depending on the parity. This means that
     D^{\Gamma_2}(K_2)& = -1 \\
     D^{\Gamma_2}(K_3)& = 1 \\
     D^{\Gamma_2}(K_4)& = 1 \\
-    D^{\Gamma_2}(K_5)& = -1 \\
+    D^{\Gamma_2}(K_5)& = -1
 \end{align*}
 
 \subsection{Real characters}
@@ -304,6 +304,27 @@ Using those statements, I can fill up the table like this:
     $\Gamma_3$ & 2 & 0 & $2$ & $\pm 1$ & 0 \\
     $\Gamma_4$ & 3 & $\pm 1$ & $-1$ & 0 & $\pm 1$ \\
     $\Gamma_5$ & 3 & $\pm 1$ & $-1$ & 0 & $\pm 1$ \\
+\end{tabular}
+
+Now those signs have to be sorted out. This can be done using the orthogonality
+of the columns and rows with each other. Row four and five, as well as column
+two and five are equal and have the same weighting factor. Therefore, there is
+a freedom of choice here, where to have the minus signs. The sign in the third
+row and fourth column has to be a minus in order to be orthogonal to the other
+entries.
+
+This is the full character table:
+
+\begin{tabular}{c|ccccc}
+    & $\chi_1$ & $\chi_2$ & $\chi_3$ & $\chi_4$ & $\chi_5$ \\
+    \midrule
+    $|K_k|$ & 1 & 6 & 3 & 8 & 6 \\
+    \midrule
+    $\Gamma_1$ & 1 & 1 & 1 & 1 & 1 \\
+    $\Gamma_2$ & 1 & $-1$ & 1 & 1 & $-1$ \\
+    $\Gamma_3$ & 2 & 0 & $2$ & $- 1$ & 0 \\
+    $\Gamma_4$ & 3 & $1$ & $-1$ & 0 & $-1$ \\
+    $\Gamma_5$ & 3 & $-1$ & $-1$ & 0 & $1$ \\
 \end{tabular}
 
 \end{document}
