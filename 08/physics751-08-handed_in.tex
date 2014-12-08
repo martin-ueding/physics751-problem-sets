@@ -186,12 +186,14 @@ notation from the exercise sheet.
 Setting $i = j
 = 3$ into the equation, this gives me
 \[
-    \chi^{\Gamma_3}_3 = \frac{10}{9}
+    \chi^{\Gamma_3}_3 = \frac{2 \pm 4}{3}
     \eqnsep
-    \chi^{\Gamma_3}_4 = \frac{5}{3}
+    \chi^{\Gamma_3}_4 = 1 \pm 2
     \eqnsep
-    \chi^{\Gamma_3}_5 = \frac{5}{3}.
+    \chi^{\Gamma_3}_5 = 1 \pm 2.
 \]
+Using the normalization for this column, only $2$, $-1$, $-1$ are viable
+choices.
 
 The following table summarizes everything I have learned about this group so
 far:
@@ -199,11 +201,13 @@ far:
 \begin{tabular}{c|ccccc}
     & $\chi_1$ & $\chi_2$ & $\chi_3$ & $\chi_4$ & $\chi_5$ \\
     \midrule
+    $|K_k|$ & 1 & 6 & 3 & 8 & 6 \\
+    \midrule
     $\Gamma_1$ & 1 & 1 & 1 & 1 & 1 \\
     $\Gamma_2$ & 1 & $-1$ & 1 & 1 & $-1$ \\
-    $\Gamma_3$ & 2 & & $10/9$ & & \\
-    $\Gamma_4$ & 3 & & $5/3$ & & \\
-    $\Gamma_5$ & 3 & & $5/3$ & & \\
+    $\Gamma_3$ & 2 & & $2$ & & \\
+    $\Gamma_4$ & 3 & & $-1$ & & \\
+    $\Gamma_5$ & 3 & & $-1$ & & \\
 \end{tabular}
 
 \subsection{Complete character table}
@@ -241,35 +245,30 @@ When all elements are taken together, this is just
 \[
     K_3 K_4 = 3 K_4.
 \]
-This means that the class constants are just $c_{34}^3 = 3$, all other
+This means that the class constants are just $c_{34}^4 = 3$, all other
 $c_{34}^k = 0$. With
 \begin{align*}
     |K_3| |K_4| \chi^{\Gamma_\nu}_3 \chi^{\Gamma_\nu}_4 &= d_\nu c_{34}^3
-    \chi^{\Gamma_\nu}_3 \\
-    \iff 4 \cdot 8 \chi^{\Gamma_\nu}_3 \chi^{\Gamma_\nu}_4 &= d_\nu 3 \chi^{\Gamma_\nu}_3 \\
-    \iff \chi^{\Gamma_\nu}_4 &= d_\nu \frac{3}{32}
+    |K_4| \chi^{\Gamma_\nu}_4 \\
+    \iff 3 \cdot 8 \chi^{\Gamma_\nu}_3 \chi^{\Gamma_\nu}_4 &= d_\nu 3 \cdot 8
+    \chi^{\Gamma_\nu}_4 \\
+    \iff \sbr{\chi^{\Gamma_\nu}_3 - d_\nu} \chi^{\Gamma_\nu}_4 &= 0 \\
 \end{align*}
-
-This lets me fill the character table with more elements. I have included the
-number of elements in each conjugacy class so aid the application of the
-orthogonality theorem.
+In all the cases, where the $\chi_3$ is not the same as $\chi_1$ the character
+of the fourth class is zero. The one remaining element can be deduced from
+normalization to be $\pm \sqrt 6$.
 
 \begin{tabular}{c|ccccc}
     & $\chi_1$ & $\chi_2$ & $\chi_3$ & $\chi_4$ & $\chi_5$ \\
     \midrule
-    $|K|$ & 1 & 6 & 3 & 8 & 6 \\
+    $|K_k|$ & 1 & 6 & 3 & 8 & 6 \\
     \midrule
     $\Gamma_1$ & 1 & 1 & 1 & 1 & 1 \\
     $\Gamma_2$ & 1 & $-1$ & 1 & 1 & $-1$ \\
-    $\Gamma_3$ & 2 & & $10/9$ & 3/16 & \\
-    $\Gamma_4$ & 3 & & $5/3$ & 9/32 & \\
-    $\Gamma_5$ & 3 & & $5/3$ & 9/32 & \\
+    $\Gamma_3$ & 2 & & $2$ & $\sqrt 6$ & \\
+    $\Gamma_4$ & 3 & & $-1$ & 0 & \\
+    $\Gamma_5$ & 3 & & $-1$ & 0 & \\
 \end{tabular}
-
-The remaining entries should be computable by the orthogonality theorems.
-However, the table is inconsistent as it is. The sum of $\chi_3$ squared is not
-$4!/4$, which should be the result. The sum of $\chi_4$ squared should be
-$4!/8$, but it is not. The computed characters must be wrong.
 
 \end{document}
 
