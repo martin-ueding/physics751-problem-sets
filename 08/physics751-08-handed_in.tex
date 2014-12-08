@@ -256,7 +256,7 @@ $c_{34}^k = 0$. With
 \end{align*}
 In all the cases, where the $\chi_3$ is not the same as $\chi_1$ the character
 of the fourth class is zero. The one remaining element can be deduced from
-normalization to be $\pm \sqrt 6$.
+normalization to be $\pm 1$.
 
 \begin{tabular}{c|ccccc}
     & $\chi_1$ & $\chi_2$ & $\chi_3$ & $\chi_4$ & $\chi_5$ \\
@@ -265,9 +265,45 @@ normalization to be $\pm \sqrt 6$.
     \midrule
     $\Gamma_1$ & 1 & 1 & 1 & 1 & 1 \\
     $\Gamma_2$ & 1 & $-1$ & 1 & 1 & $-1$ \\
-    $\Gamma_3$ & 2 & & $2$ & $\sqrt 6$ & \\
+    $\Gamma_3$ & 2 & & $2$ & $\pm 1$ & \\
     $\Gamma_4$ & 3 & & $-1$ & 0 & \\
     $\Gamma_5$ & 3 & & $-1$ & 0 & \\
+\end{tabular}
+
+Looking at the normalization of the columns and rows, I can make the following
+statements:
+\begin{itemize}
+    \item
+        In the second column, the squared sum must be $24/6=4$. This mean
+        that either one $\pm 2$ or two $\pm 1$ must fill the remaining places.
+    \item
+        Same for the fifth column. Column two and five have to be orthogonal,
+        though.
+    \item
+        The sum in the third row as needed for the normalization,
+        taking only the known places into account, is $1\cdot2^2 + 3\cdot2^2 +
+        8\cdot1^2 = 4 + 12 + 8 = 24$. This already is $|G| = 24$, such that
+        only zeros can be in this row.
+    \item
+        The sum in the fourth row is $1\cdot3^2 + 3\cdot1^2 = 12$. There is 12
+        missing to make it to 24. Looking at the weighting factors (the number
+        of elements in the conjugacy class), both entries have to be $\pm1$.
+    \item
+        The same argument applies to the fifth row, there can only be $\pm 1$
+        in the gaps as well.
+\end{itemize}
+Using those statements, I can fill up the table like this:
+
+\begin{tabular}{c|ccccc}
+    & $\chi_1$ & $\chi_2$ & $\chi_3$ & $\chi_4$ & $\chi_5$ \\
+    \midrule
+    $|K_k|$ & 1 & 6 & 3 & 8 & 6 \\
+    \midrule
+    $\Gamma_1$ & 1 & 1 & 1 & 1 & 1 \\
+    $\Gamma_2$ & 1 & $-1$ & 1 & 1 & $-1$ \\
+    $\Gamma_3$ & 2 & 0 & $2$ & $\pm 1$ & 0 \\
+    $\Gamma_4$ & 3 & $\pm 1$ & $-1$ & 0 & $\pm 1$ \\
+    $\Gamma_5$ & 3 & $\pm 1$ & $-1$ & 0 & $\pm 1$ \\
 \end{tabular}
 
 \end{document}
