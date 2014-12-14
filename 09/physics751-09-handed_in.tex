@@ -137,6 +137,40 @@ For the second state, the normalization is $1/\sqrt 6$. The matrix element is:
     &= 0.
 \end{align*}
 
+\section{Spin operator}
+
+\begin{problem}
+    Repeat the previous calculations with the spin operator $\hat \sigma_3$
+    with eigenvalues $\pm 1$.
+\end{problem}
+
+\begin{align*}
+    \Braket{\Pp S | \hat q(3) | \Pp S}
+    &= \frac 12 \Braket{\text{udu} - \text{duu} | \hat \sigma_3 | \text{udu} - \text{duu}} \\
+    &= \frac 12 \Braket{\text{udu} | \hat \sigma_3 | \text{udu}}
+    + \frac 12 \Braket{\text{duu} | \hat \sigma_3 | \text{duu}} \\
+    &= \frac 12 \Braket{\text{udu} | 1 | \text{udu}}
+    + \frac 12 \Braket{\text{duu} | 1 | \text{duu}} \\
+    &= 1
+\end{align*}
+
+\begin{align*}
+    \Braket{\Pp A | \hat q(3) | \Pp A}
+    &= \frac{1}{6} \braket{2 \text{uud} - \text{udu} - \text{duu} | \hat
+    \sigma_3 | 2 \text{uud} - \text{udu} - \text{duu}} \\
+    %
+    &= \frac{1}{6} \braket{2 \text{uud} | \hat \sigma_3 | 2 \text{uud}}
+    + \frac{1}{6} \braket{\text{udu} | \hat \sigma_3 | \text{udu}}
+    + \frac{1}{6} \braket{\text{duu} | \hat \sigma_3 | \text{duu}} \\
+    %
+    &= \frac{1}{6} \Braket{2 \text{uud} | -1 | 2 \text{uud}}
+    + \frac{1}{6} \Braket{\text{udu} | 1 | \text{udu}}
+    + \frac{1}{6} \Braket{\text{duu} | 1 | \text{duu}} \\
+    &= \frac 16 [-4 + 1 + 1] \\
+    &= - \frac 13
+\end{align*}
+
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
