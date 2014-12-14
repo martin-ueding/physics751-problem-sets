@@ -1,0 +1,142 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[
+    bibatend,
+    color,
+]{../header}
+
+\usepackage{booktabs}
+\usepackage{pdflscape}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=white,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\newmdenv[%
+    backgroundcolor=SframeBackground,
+    frametitlebackgroundcolor=SframeTitleBackground,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+    frametitle={Problem statement},
+    frametitlerule=true,
+]{problem}
+
+\newmdenv[%
+    backgroundcolor=white,
+    frametitlebackgroundcolor=SframeTitleBackground,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    innerbottommargin=8cm,
+    splittopskip=\topskip,
+    frametitle={Side question},
+    frametitlerule=true,
+    %nobreak=true,
+]{question}
+
+\DeclareMathOperator{\Tr}{Tr}
+
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcommand\inv{^{-1}}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{9}
+
+\subject{physics751 -- Group Theory}
+\ihead{physics751 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group 1 -- Patrick Matuschek}
+\ofoot{Group 1 -- Patrick Matuschek}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\section{Charge operator}
+
+\begin{problem}
+    Determine the expectation values of $\hat q(3)$.
+\end{problem}
+
+The correct normalization that should have been calculated in the presence
+problems is given by a factor $1/\sqrt 2$.
+
+\newcommand\Pp[1]{\Psi_\text{proton}^{[M,#1]}}
+
+\begin{align*}
+    \Braket{\Pp S | \hat q(3) | \Pp S}
+    &= \frac 12 \Braket{\text{udu} - \text{duu} | \hat q(3) | \text{udu} - \text{duu}} \\
+    \intertext{%
+        I use the linearity of the scalar product. I further assume that any
+        flavor states that are not exactly the same are orthogonal. Therefore,
+        only those elements remain:
+    }
+    &= \frac 12 \Braket{\text{udu} | \hat q(3) | \text{udu}}
+    + \frac 12 \Braket{\text{duu} | \hat q(3) | \text{duu}}. \\
+    \intertext{%
+        Now I apply the charge operator and obtain
+    }
+    &= \frac 12 \Braket{\text{udu} | \frac 23 | \text{udu}}
+    + \frac 12 \Braket{\text{duu} | \frac 23 | \text{duu}}. \\
+    \intertext{%
+        I pull the fraction out front.
+    }
+    &= \frac 13 \Braket{\text{udu} | \text{udu}}
+    + \frac 13 \Braket{\text{duu} | \text{duu}} \\
+    \intertext{%
+        Those scalar products are just unity, so only
+    }
+    &= \frac 23
+\end{align*}
+remains.
+
+For the second state, the normalization is $1/\sqrt 6$. The matrix element is:
+\begin{align*}
+    \Braket{\Pp A | \hat q(3) | \Pp A}
+    &= \frac{1}{6} \braket{2 \text{uud} - \text{udu} - \text{duu} | \hat q(3) | 2
+    \text{uud} - \text{udu} - \text{duu}} \\
+    \intertext{%
+        I use the same orthogonality and linearity here as well.
+    }
+    &= \frac{1}{6} \braket{2 \text{uud} | \hat q(3) | 2 \text{uud}}
+    + \frac{1}{6} \braket{\text{udu} | \hat q(3) | \text{udu}}
+    + \frac{1}{6} \braket{\text{duu} | \hat q(3) | \text{duu}} \\
+    \intertext{%
+        I now apply the charge operator to the last quark.
+    }
+    &= \frac{1}{6} \Braket{2 \text{uud} | -\frac13 | 2 \text{uud}}
+    + \frac{1}{6} \Braket{\text{udu} | \frac 23 | \text{udu}}
+    + \frac{1}{6} \Braket{\text{duu} | \frac 23 | \text{duu}} \\
+    \intertext{%
+        The first scalar product is 4, the last two are 1. This leaves
+    }
+    &= \frac 16 \sbr{- \frac 43 + \frac 23 + \frac 23} \\
+    &= 0.
+\end{align*}
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
