@@ -1,0 +1,228 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[
+    bibatend,
+    color,
+]{../header}
+
+\usepackage{booktabs}
+\usepackage{pdflscape}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=white,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\newmdenv[%
+    backgroundcolor=SframeBackground,
+    frametitlebackgroundcolor=SframeTitleBackground,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+    frametitle={Problem statement},
+    frametitlerule=true,
+]{problem}
+
+\newmdenv[%
+    backgroundcolor=white,
+    frametitlebackgroundcolor=SframeTitleBackground,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    innerbottommargin=8cm,
+    splittopskip=\topskip,
+    frametitle={Side question},
+    frametitlerule=true,
+    %nobreak=true,
+]{question}
+
+\DeclareMathOperator{\Tr}{Tr}
+
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcommand\inv{^{-1}}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{11}
+
+\subject{physics751 -- Group Theory}
+\ihead{physics751 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group 1 -- Patrick Matuschek}
+\ofoot{Group 1 -- Patrick Matuschek}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\section{Characters}
+
+$C_\piup$ is the rotation around the $z$-axis with the angle $\piup$. The $i$
+is the group element that corresponds to inversion. The group element $\sigma$
+is the mirror symmetry.
+
+The character of the mirror symmetry is computed directly using the hint that
+$\sigma = C_\piup \circ i$:
+\begin{align*}
+    P_\sigma Y_{lm}
+    &= P_{C_\piup} P_i Y_{lm} \\
+    \intertext{%
+        The action of $P_i$ is already given on the problem set. I just use
+        that.
+    }
+    &= [-1]^l P_{C_\piup} Y_{lm} \\
+    \intertext{%
+        The action of the rotation on a single (fixed $m$) spherical harmonic
+        is given at the top of the page on the problem set.
+    }
+    &= [-1]^l \exp(-\iup m \piup) Y_{lm} \\
+    \intertext{%
+        That exponential function is just a $[-1]^m$.
+    }
+    &= [-1]^{l+m} Y_{lm}
+\end{align*}
+I think of $[-1]^{l+m}$ as a diagonal matrix with index $m$. The character of
+it is the sum of all the elements:
+\[
+    \chi(\sigma)
+    = [-1]^l \sum_{m=-l}^l [-1]^m
+\]
+Theorem: $\chi(\sigma) = 1$.
+\begin{proof}
+    I will use induction for this. For $l = 0$, the character is 1. Now the
+    induction step:
+    \begin{align*}
+        \chi(\sigma)_{l+1}
+        &= [-1]^{l+1} \sum_{m=-l-1}^{l+1} [-1]^m \\
+        &= - [-1]^{l} \sbr{[-1]^{-l-1} + [-1]^{l+1} + \sum_{m=-l}^{l} [-1]^m} \\
+        &= - [-1]^{-1} - [-1]^{2l+1} - [-1]^{l} \sum_{m=-l}^{l} [-1]^m \\
+        &= 1 + 1 - [-1]^{l} \sum_{m=-l}^{l} [-1]^m \\
+        &= 1 + 1 - \chi(\sigma)_l \\
+        &= 1 + 1 - 1 \\
+        &= 1
+    \end{align*}
+    By the principle of full induction, the theorem is proven.
+\end{proof}
+
+Now I will tend to the improper rotations (rotoreflections) $S_\alpha =
+C_\alpha \circ \sigma$. I can use the same method as before.
+\begin{align*}
+    P_{S_\alpha} Y_{lm}
+    &= P_{C_\alpha} P_\sigma Y_{lm} \\
+    \intertext{%
+        From the previous part, I know the action of $P_\sigma$.
+    }
+    &= [-1]^{l+m} P_{C_\alpha} Y_{lm} \\
+    &= [-1]^{l+m} \exp(-\iup m \alpha) Y_{lm}
+\end{align*}
+The character is the trace over this construct:
+\begin{align*}
+    \chi(S_\alpha)
+    &= [-1]^l \sum_{m=-l}^l [-1]^m \exp(-\iup m \alpha) \\
+    \intertext{%
+        I move the $[-1]^m$ into the exponential function.
+    }
+    &= [-1]^l \sum_{m=-l}^l \exp\del{-\iup m [\alpha+\piup]} \\
+    \intertext{%
+        This only differs by the factor in front from the character of
+        $C_{\alpha+\piup}$.
+    }
+    &= [-1]^l \chi(C_{\alpha+\piup}) \\
+    &= [-1]^l \frac{\sin\del{\sbr{l + \frac12}[\alpha +
+    \piup]}}{\sin\del{\frac{\alpha+\piup}2}} \\
+\end{align*}
+
+\section{Determine the character table}
+
+The group $\mathrm{O_h}$ has ten conjugacy classes. The ones with rotations
+around ${2\piup/3}\,\si{\radian}$ should have the same character, I think: The
+character of a rotation was only dependant on its angle $\alpha$, and the
+$z$-axis was used without loss of generality. Therefore there are only eight
+characters that I have to compute. The classes are represented by
+\[
+    e
+    \eqnsep
+    C_{\piup/2}
+    \eqnsep
+    C_{3\piup/2}
+    \eqnsep
+    C_{\piup}
+    \eqnsep
+    i
+    \eqnsep
+    S_{\piup/2}
+    \eqnsep
+    S_{3\piup/2}
+    \eqnsep
+    S_{\piup}
+\]
+
+The basis has seven dimensions, therefore I need seven dimensional
+representations.
+
+The first characters are
+\[
+    \chi(e) = 2l+1 = 7
+    \eqnsep
+    \chi(i) = [-1]^3 [2l+1] = - 7.
+\]
+Then
+\[
+    \chi(C_{\piup/2})
+    = \frac{\sin\del{\frac72 \frac\piup2}}{\sin\del{\frac\piup4}}
+    = - 1.
+\]
+From this,
+\[
+    \chi(S_{\piup/2})
+    = 1
+\]
+follows by the derivations in the previous exercise.
+
+Then
+\[
+    \chi(C_{3\piup/2})
+    = \frac{\sin\del{\frac72 \frac{3\piup}2}}{\sin\del{\frac\piup3}}
+    = - \sqrt{\frac23}
+    \eqnsep
+    \chi(S_{3\piup/2}) = \sqrt{\frac23}.
+\]
+And
+\[
+    \chi(C_{\piup})
+    = \frac{\sin\del{\frac72 \piup}}{\sin\del{\frac\piup2}}
+    = - 1
+    \eqnsep
+    \chi(S_{\piup}) = 1.
+\]
+
+
+\section{Reduced symmetry}
+
+When the particle has angular momentum $J$, there is only rotational symmetry
+around $\vec J$.
+
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
