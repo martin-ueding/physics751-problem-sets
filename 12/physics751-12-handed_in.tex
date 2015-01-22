@@ -296,10 +296,57 @@ Therefore the Laplacian can be written as
 
 \section{Constrain to unit sphere}
 
+The constraining to the sphere means the constraint $r - 1 = 0$ is added.
+Therefore, $r$ is not a free coordinate of the system any more, only $\theta$
+and $\phi$ are. The Hamiltonian then becomes:
+\[
+    H = \frac{\vec L^2}{2m}.
+\]
+The eigenfunctions are the spherical harmonics $Y_{lm}$ with $\vec L^2$
+eigenvalue $l[l+1]$. The eigenenergies therefore are:
+\[
+    E_l = \frac{l[l+1]}{2m}.
+\]
+In the regular hydrogen atom, there arises the need for a quantum number $n$ in
+order for the radial part to be normalizable. This is not the case here, so
+there is no need for $n$ and $l$ and $m$ are the only quantum numbers needed.
+The degeneracy therefore is just $2l + 1$.
+
 \section{Laplacian in two dimensions}
+
+This is more of less the same thing as in the first homework problem. There are
+just less components and more vanishing derivatives of the basis vectors. The
+gradient is
+\[
+    \vnabla = \ev_\rho \pd{}\rho + \ev_\phi \frac1\rho \pd{}\phi.
+\]
+Then the cross product in the angular momentum operator is
+\[
+    \vec \rho \times \vnabla
+    = \rho \ev_\rho \times \ev_\phi \frac1\rho \pd{}\phi
+    = \ev_z \pd{}\phi.
+\]
+The square is simple because $\ev_z$ does not depend on $\phi$ at all.
+Therefore
+\[
+    \vec L^2 = - \pd{^2}{\phi^2}.
+\]
+
+The Hamiltonian with the interaction is then given by
+\[
+    H = \frac{L^2}{2m} - \frac{e^2}{\rho}.
+\]
 
 \section{Degeneracy}
 
+The solutions seem to be $\psi(\phi)$ only. A product ansatz like $R(\rho)
+\Phi(\phi)$ will probably work. The angular part is most likely given by
+$\Phi(\phi) = \exp(\iup l \phi)$. The $R(\rho)$ will probably have to have an
+$n$ such that the polynomial ends somewhere and $\lim_{\rho\to\infty} R(\rho)
+= 0$ is given.
+
+Since there is just one angle, I am not sure whether there is a degeneracy
+after all.
 
 \end{document}
 
