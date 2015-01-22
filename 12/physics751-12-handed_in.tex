@@ -1,0 +1,306 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[
+    bibatend,
+    color,
+]{../header}
+
+\usepackage{booktabs}
+\usepackage{pdflscape}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=white,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\newmdenv[%
+    backgroundcolor=SframeBackground,
+    frametitlebackgroundcolor=SframeTitleBackground,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+    frametitle={Problem statement},
+    frametitlerule=true,
+]{problem}
+
+\newmdenv[%
+    backgroundcolor=white,
+    frametitlebackgroundcolor=SframeTitleBackground,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    innerbottommargin=8cm,
+    splittopskip=\topskip,
+    frametitle={Side question},
+    frametitlerule=true,
+    %nobreak=true,
+]{question}
+
+\DeclareMathOperator{\Tr}{Tr}
+
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcommand\inv{^{-1}}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{12}
+
+\subject{physics751 -- Group Theory}
+\ihead{physics751 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group 1 -- Patrick Matuschek}
+\ofoot{Group 1 -- Patrick Matuschek}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\section{Momentum operator}
+
+I copy the gradient from \parencite{wikipedia/del_spherical}:
+\[
+    \vnabla =
+    \ev_r \pd{}r
+    + \ev_\theta \frac 1r \pd{}\theta
+    + \ev_\phi \frac1{r \sin(\theta)} \pd{}\phi.
+\]
+Then with $\vec r = r \ev_r$ I can form the cross product, which is linear in
+its two arguments:
+\begin{align*}
+    \vec r \times \vnabla
+    &= r \ev_r \times \sbr{\ev_r \pd{}r + \ev_\theta \frac 1r \pd{}\theta
+    + \ev_\phi \frac1{r \sin(\theta)} \pd{}\phi}. \\
+    &= r \ev_r \times \ev_\theta \frac 1r \pd{}\theta
+    + r \ev_r \times \ev_\phi \frac1{r \sin(\theta)} \pd{}\phi
+    \intertext{%
+        Cancel $r$.
+    }
+    &= \ev_r \times \ev_\theta \pd{}\theta
+    + \ev_r \times \ev_\phi \frac1{\sin(\theta)} \pd{}\phi
+    \intertext{%
+        The vectors $\{ \ev_r, \ev_\theta, \ev_\phi \}$ form a right-handed
+        orthonormal basis. That means that those cross products are simply
+        cyclic.
+    }
+    &= \ev_\phi \pd{}\theta - \ev_\theta \frac1{\sin(\theta)} \pd{}\phi
+\end{align*}
+
+\begin{landscape}
+
+\section{Laplacian in three dimensions}
+
+\begin{align*}
+    \vec L^2
+    &= - \sbr{\ev_\phi \pd{}\theta - \ev_\theta \frac1{\sin(\theta)}
+    \pd{}\phi}^2 \\
+    &= - \sbr{\ev_\phi \pd{}\theta - \ev_\theta \frac1{\sin(\theta)}
+    \pd{}\phi} \sbr{\ev_\phi \pd{}\theta - \ev_\theta \frac1{\sin(\theta)}
+    \pd{}\phi} \\
+    &= -
+    \sbr{
+        \ev_\phi \pd{}\theta
+        \ev_\phi \pd{}\theta
+        -
+        \ev_\phi \pd{}\theta
+        \ev_\theta \frac1{\sin(\theta)} \pd{}\phi
+        -
+        \ev_\theta \frac1{\sin(\theta)} \pd{}\phi
+        \ev_\phi \pd{}\theta
+        +
+        \ev_\theta \frac1{\sin(\theta)} \pd{}\phi
+        \ev_\theta \frac1{\sin(\theta)} \pd{}\phi
+    }
+    \intertext{%
+        Now I have apply the product rule to get even more terms. I will not do
+        them all at once since the page is not wide enough, even in landscape.
+        The first two look like this when expanded:
+    }
+    &= -
+    \sbr{
+        \ev_\phi \sbr{\pd{}\theta \ev_\phi} \pd{}\theta
+        +
+        \ev_\phi \ev_\phi \pd{^2}{\theta^2}
+        -
+        \ev_\phi \ev_\theta \pd{}\theta \frac1{\sin(\theta)} \pd{}\phi
+        -
+        \ev_\phi \sbr{\pd{}\theta \ev_\theta} \frac1{\sin(\theta)} \pd{}\phi
+        -
+        \ev_\theta \frac1{\sin(\theta)} \pd{}\phi
+        \ev_\phi \pd{}\theta
+        +
+        \ev_\theta \frac1{\sin(\theta)} \pd{}\phi
+        \ev_\theta \frac1{\sin(\theta)} \pd{}\phi
+    }
+    \intertext{%
+        The first term is zero since $\ev_\phi$ has no dependence on $\theta$.
+        The second one can be simplified since the vectors are unit vectors.
+        The third term is zero because of the orthogonality of the basis
+        vectors.
+    }
+    &= -
+    \sbr{
+        \pd{^2}{\theta^2}
+        -
+        \ev_\phi \sbr{\pd{}\theta \ev_\theta} \frac1{\sin(\theta)} \pd{}\phi
+        -
+        \ev_\theta \frac1{\sin(\theta)} \pd{}\phi
+        \ev_\phi \pd{}\theta
+        +
+        \ev_\theta \frac1{\sin(\theta)} \pd{}\phi
+        \ev_\theta \frac1{\sin(\theta)} \pd{}\phi
+    }
+    \intertext{%
+        Now there is a bit space left and I will expand the next term.
+    }
+    &= -
+    \sbr{
+        \pd{^2}{\theta^2}
+        -
+        \ev_\phi \sbr{\pd{}\theta \ev_\theta} \frac1{\sin(\theta)} \pd{}\phi
+        -
+        \ev_\theta \frac1{\sin(\theta)} \sbr{\pd{}\phi \ev_\phi} \pd{}\theta
+        -
+        \ev_\theta \ev_\phi \frac1{\sin(\theta)} 
+        \pd{}\phi \pd{}\theta
+        +
+        \ev_\theta \frac1{\sin(\theta)} \pd{}\phi
+        \ev_\theta \frac1{\sin(\theta)} \pd{}\phi
+    }
+    \intertext{%
+        Here, the first new term has to be evaluated a bit more closely, but
+        the second new one is zero because of the orthogonality as well. Now I
+        can expand the last term.
+    }
+    &= -
+    \sbr{
+        \pd{^2}{\theta^2}
+        -
+        \ev_\phi \sbr{\pd{}\theta \ev_\theta} \frac1{\sin(\theta)} \pd{}\phi
+        -
+        \ev_\theta \frac1{\sin(\theta)} \sbr{\pd{}\phi \ev_\phi} \pd{}\theta
+        +
+        \ev_\theta \frac1{\sin(\theta)^2} \sbr{\pd{}\phi
+        \ev_\theta} \pd{}\phi
+        +
+        \ev_\theta \frac1{\sin(\theta)^2} \sbr{\pd{}\phi
+        \ev_\theta} \pd{}\phi
+        +
+        \frac1{\sin(\theta)^2} \pd{^2}{\phi^2}
+    }
+    \intertext{%
+        The last term can be simplified as well because of the normality. I
+        expand the leading minus to get rid of that square bracket.
+    }
+    &= -
+    \pd{^2}{\theta^2}
+    +
+    \ev_\phi \sbr{\pd{}\theta \ev_\theta} \frac1{\sin(\theta)} \pd{}\phi
+    +
+    \ev_\theta \frac1{\sin(\theta)} \sbr{\pd{}\phi \ev_\phi} \pd{}\theta
+    -
+    \ev_\theta \frac1{\sin(\theta)} \sbr{\pd{}\phi
+    \ev_\theta} \frac1{\sin(\theta)} \pd{}\phi
+    -
+    \frac1{\sin(\theta)^2} \pd{^2}{\phi^2}
+    \intertext{%
+        I computed $\partial \ev_\theta / \partial \theta$ and it turns out to
+        be $-\ev_r$. This is orthogonal to $\ev_\phi$. The second term is zero,
+        therefore. The derivative $\partial \ev_\theta / \partial \phi$ gives
+        $-\cos(\theta) \ev_\phi$ which is orthogonal to $\ev_\theta$. So the
+        fourth term drops as well.
+    }
+    &= - \pd{^2}{\theta^2}
+    + \ev_\theta \frac1{\sin(\theta)} \sbr{\pd{}\phi \ev_\phi} \pd{}\theta
+    - \frac1{\sin(\theta)^2} \pd{^2}{\phi^2}
+    \intertext{%
+        The derivative $\partial \ev_\phi / \partial \phi$ gives something that
+        is in the $z$-plane and not orthogonal to $\ev_\theta$. The scalar
+        product will give a contribution of $-\cos(\theta)$ here.
+    }
+    &= - \pd{^2}{\theta^2}
+    - \cot(\theta) \pd{}\theta
+    - \frac1{\sin(\theta)^2} \pd{^2}{\phi^2}
+    \intertext{%
+        Using the product rule in reverse, this can be written more compactly.
+    }
+    &= - \sbr{
+        \pd{^2}{\theta^2}
+        + \cot(\theta) \pd{}\theta
+    }
+    - \frac1{\sin(\theta)^2} \pd{^2}{\phi^2}
+    \intertext{%
+        I insert a one into the first summand and expand the cotangent.
+    }
+    &= - \sbr{
+        \frac{1}{\sin(\theta)} \sin(\theta) \pd{^2}{\theta^2}
+        + \frac{\cos(\theta)}{\sin(\theta)} \pd{}\theta
+    }
+    - \frac1{\sin(\theta)^2} \pd{^2}{\phi^2}
+    \intertext{%
+        Then I factor out the cosecant.
+    }
+    &= - \frac{1}{\sin(\theta)} \sbr{
+        \sin(\theta) \pd{^2}{\theta^2}
+        + \cos(\theta) \pd{}\theta
+    }
+    - \frac1{\sin(\theta)^2} \pd{^2}{\phi^2}
+    \intertext{%
+        Write the cosine as the derivative of the sine.
+    }
+    &= - \frac{1}{\sin(\theta)} \sbr{
+        \sin(\theta) \pd{^2}{\theta^2}
+        + \pd{\sin(\theta)}\theta \pd{}\theta
+    }
+    - \frac1{\sin(\theta)^2} \pd{^2}{\phi^2} \\
+    \intertext{%
+        Then I factor out the last derivative.
+    }
+    &= - \frac{1}{\sin(\theta)} \sbr{
+        \sin(\theta) \pd{}{\theta}
+        + \pd{}\theta \sin(\theta)
+    } \pd{}\theta
+    - \frac1{\sin(\theta)^2} \pd{^2}{\phi^2}
+    \intertext{%
+        Now reverse the product rule.
+    }
+    &= - \frac{1}{\sin(\theta)} \pd{}{\theta} \sin(\theta) \pd{}\theta
+    - \frac1{\sin(\theta)^2} \pd{^2}{\phi^2}
+\end{align*}
+That is the expression given on the problem set.
+
+Therefore the Laplacian can be written as
+\[
+    \laplace = \frac{1}{r^2} \pd{}r r^2 \pd{}r - \frac{\vec L^2}{r^2}.
+\]
+\end{landscape}
+
+\section{Constrain to unit sphere}
+
+\section{Laplacian in two dimensions}
+
+\section{Degeneracy}
+
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
