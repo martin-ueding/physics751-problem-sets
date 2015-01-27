@@ -1,0 +1,180 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[
+    bibatend,
+    %color,
+]{../header}
+
+\usepackage{booktabs}
+\usepackage{pdflscape}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=white,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\newmdenv[%
+    backgroundcolor=SframeBackground,
+    frametitlebackgroundcolor=SframeTitleBackground,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+    frametitle={Problem statement},
+    frametitlerule=true,
+]{problem}
+
+\newmdenv[%
+    backgroundcolor=white,
+    frametitlebackgroundcolor=SframeTitleBackground,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    innerbottommargin=8cm,
+    splittopskip=\topskip,
+    frametitle={Side question},
+    frametitlerule=true,
+    %nobreak=true,
+]{question}
+
+\DeclareMathOperator{\Tr}{Tr}
+
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcommand\inv{^{-1}}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{12}
+
+\subject{physics751 -- Group Theory}
+\ihead{physics751 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group 1 -- Patrick Matuschek}
+\ofoot{Group 1 -- Patrick Matuschek}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\usepackage[vcentermath]{youngtab}
+
+\begin{document}
+
+\maketitle
+
+\section{Tensor products of Young tableaux}
+
+\subsection{}
+
+\begin{problem}
+    Calculate $\bar 3 \otimes \bar 3$ and $\bar 3 \otimes \bar 3 \otimes \bar
+    3$.
+\end{problem}
+
+To solve arbitrary tensor products I distilled the algorithm given on the
+problem set into an interactive website which can be found at:
+
+\url{http://app.martin-ueding.de/young-frame-product/}
+
+Or just scan the following QR code:
+
+\includegraphics[height=3cm]{app.png}
+
+\subsubsection{Calculation of $\bar 3 \otimes \bar 3$}
+
+Using my program, I get the following:
+
+\[
+    \yng(1,1) \otimes \yng(1,1)
+    = \yng(2,2) \oplus \yng(2,1,1)
+    = \yng(2,2) \oplus \yng(1).
+\]
+In the last step, it is used that $N = 3$ and the first column can therefore be
+omitted. This can also be rewritten in terms of the dimensions:
+\[
+    \bar 3 \otimes \bar 3 = 6 \oplus 3.
+\]
+
+\subsubsection{Calculation of $\bar 3 \otimes \bar 3 \otimes \bar 3$}
+
+Now this has to be multiplied with $\bar 3$ again. First, I expand this:
+\begin{align*}
+    \sbr{\yng(2,2) \oplus \yng(1)} \otimes \yng(1,1)
+    &= \yng(2,2) \otimes \yng(1,1) \oplus \yng(1) \otimes \yng(1,1)
+    \intertext{%
+        Now I use my program to compute the products of this. I will put
+        brackets around the summands of the above equation make it clear which
+        belongs to which.
+    }
+    &= \sbr{ \yng(3,3) \oplus \yng(3,2,1) } \oplus \sbr{ \yng(2,1) \oplus
+    \yng(1,1,1) }
+    \intertext{%
+        The second summand can be simplified and I am left with:
+    }
+    &= \yng(3,3) \oplus 2 \, \yng(2,1) \oplus \yng(1,1,1)
+    \intertext{%
+        The program also gives the dimensions, so I can write this as:
+    }
+    &= 10 \oplus 2 \cdot 8 \oplus 1
+\end{align*}
+The total dimension is 27, so this checks out.
+
+\subsection{}
+
+\begin{problem}
+    Calculate $8 \otimes 8$.
+\end{problem}
+
+The expected dimension would be 64. My program does not give the right result,
+however. This is the output of the program.
+\[
+    \yng(2,1) \otimes \yng(2,1)
+    =
+    \yng(4,2) \oplus \yng(4,1,1) \oplus 2 \, \yng(3,3) \oplus 4 \, \yng(3,2,1)
+    \oplus 2 \, \yng(2,2,2)
+\]
+The program then computed the dimensions and gets:
+\[
+    27 \oplus 10 \oplus 2 \cdot 10 \oplus 4 \cdot 8 \oplus 2 \cdot 1
+\]
+This sum is 91. This is 27 too much. The only way to get rid of the 27 is to
+remove the first diagram which has dimension 27. I do not understand why this
+would not be a legal diagram.
+Writing it with the letters from the algorithm gives:
+\[
+    \young(\cdot\cdot aa,\cdot b)
+\]
+
+This should be legal, because all the rules mentioned on the problem set are
+fulfilled:
+\begin{itemize}
+    \item
+        The row lengths decrease.
+    \item
+        There are no two $a$ in the same column.
+    \item
+        Writing out the right-to-left, top-to-bottom traversal, it will be
+        $aab$. The number of $a$s is always greater than the number of $b$s in
+        any point of this traversal.
+\end{itemize}
+
+\subsection{Exact SU(3) symmetry}
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
