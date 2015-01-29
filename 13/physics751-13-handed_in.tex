@@ -140,40 +140,42 @@ The total dimension is 27, so this checks out.
     Calculate $8 \otimes 8$.
 \end{problem}
 
-The expected dimension would be 64. My program does not give the right result,
-however. This is the output of the program.
+The expected dimension would be 64. This is the output of the program:
 \[
     \yng(2,1) \otimes \yng(2,1)
     =
-    \yng(4,2) \oplus \yng(4,1,1) \oplus 2 \, \yng(3,3) \oplus 4 \, \yng(3,2,1)
-    \oplus 2 \, \yng(2,2,2)
+    \yng(4,2) \oplus \yng(4,1,1) \oplus \yng(3,3) \oplus 2 \, \yng(3,2,1)
+    \oplus \yng(2,2,2)
 \]
 The program then computed the dimensions and gets:
 \[
-    27 \oplus 10 \oplus 10^2 \oplus 8^4 \oplus 1^2
+    27 \oplus 10 \oplus 10 \oplus 8^2 \oplus 1
 \]
-This sum is 91. This is 27 too much. The only way to get rid of the 27 is to
-remove the first diagram which has dimension 27. I do not understand why this
-would not be a legal diagram.
-Writing it with the letters from the algorithm gives:
-\[
-    \young(\cdot\cdot aa,\cdot b)
-\]
-
-This should be legal, because all the rules mentioned on the problem set are
-fulfilled:
-\begin{itemize}
-    \item
-        The row lengths decrease.
-    \item
-        There are no two $a$ in the same column.
-    \item
-        Writing out the right-to-left, top-to-bottom traversal, it will be
-        $aab$. The number of $a$s is always greater than the number of $b$s in
-        any point of this traversal.
-\end{itemize}
+This sum is 64, so it matches the dimensions.
 
 \subsection{Exact SU(3) symmetry}
+
+In the presence problem A~13.3 we looked at the scattering of two open charm
+mesons with each other. Because we assumed the exact SU(3) symmetry and there
+are three of those D quarks, we need a three dimensional representation. The
+one that applied here is the $\Gamma_3$ one. Then we took $3 \otimes 3 = 6
+\oplus \bar 3$ and said that there are two irreducible representations,
+therefore there are two independent scattering amplitudes.
+
+\begin{question}
+    Did I say this correctly?
+\end{question}
+
+Now we scatter one of those D quarks with anti D quarks. There is another three
+dimensional representation, the $\Gamma_{\bar 3}$. With this, I can do the same
+calculation:
+\[
+    3 \otimes \bar 3 = 8 \oplus 1
+    \eqnsep
+    \yng(1) \otimes \yng(1,1) = \yng(2,1) \oplus \yng(1,1,1)
+\]
+So there are two irreducible representations here as well. Therefore, there are
+two scattering amplitudes as well.
 
 \end{document}
 
